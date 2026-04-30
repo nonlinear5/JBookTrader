@@ -1,6 +1,16 @@
 # Compiled class file
 *.class
 
+# build artifacts
+/dist
+
+# project files
+/.idea
+.idea
+
+# run artifacts
+/reports
+
 # Log file
 *.log
 

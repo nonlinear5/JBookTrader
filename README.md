@@ -1,2 +1,2 @@
 # JBookTrader
-The original JBookTrader, a fully automated trading platform
+The original JBookTrader revitalized in 2026, a fully automated trading system for Interactive Brokers platform.
