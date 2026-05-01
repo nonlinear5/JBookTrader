@@ -14,10 +14,9 @@ public class ESLongTensorEqualizer1 extends ESLongTensorEqualizerBase {
 
     @Override
     public void setParams() {
-        // centroid, 250 trades minimum, max OG=616
-        addParam(PERIOD1, 10, 10000, 640);
-        addParam(SCALE, 1, 1500, 1105);
-        addParam(ENTRY, 0, 1000, 199);
-        addParam(EXIT, 0, 1000, 431);
+        addParam(PERIOD, 10, 10000, 3000);
+        addParam(SCALE, 1, 1500, 1092);
+        addParam(ENTRY, 0, 1000, 227);
+        addParam(EXIT, 0, 1000, 539);
     }
 }

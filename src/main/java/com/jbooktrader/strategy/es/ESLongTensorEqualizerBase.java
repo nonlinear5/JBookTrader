@@ -9,7 +9,7 @@ import com.jbooktrader.strategy.base.StrategyES;
  */
 public abstract class ESLongTensorEqualizerBase extends StrategyES {
     // Strategy parameters names
-    protected static final String PERIOD1 = "Period1";
+    protected static final String PERIOD = "Period";
     protected static final String SCALE = "Scale";
     protected static final String ENTRY = "Entry";
     protected static final String EXIT = "Exit";
@@ -29,7 +29,7 @@ public abstract class ESLongTensorEqualizerBase extends StrategyES {
 
     @Override
     public void setIndicators() {
-        tensorEqualizer = (TensorEqualizer) addIndicator(new TensorEqualizer(getParam(PERIOD1), scale));
+        tensorEqualizer = (TensorEqualizer) addIndicator(new TensorEqualizer(getParam(PERIOD), scale));
     }
 
     @Override

@@ -10,9 +10,9 @@ import com.jbooktrader.platform.marketbook.MarketSnapshot;
  */
 public class TensorEqualizer extends Indicator {
 
-    private final double alpha1, priceScale;
+    private final double alpha, priceScale;
 
-    private double alpha1Count;
+    private double alphaCount;
 
     private double slowPriceSum, slowBalanceSum;
 
@@ -23,7 +23,7 @@ public class TensorEqualizer extends Indicator {
     public TensorEqualizer(int slowPeriod, int priceScale) {
         super(slowPeriod, priceScale);
         // make sure to avoid the integer division
-        alpha1 = 1 - 2.0 / (slowPeriod + 1);
+        alpha = 1 - 2.0 / (slowPeriod + 1);
         this.priceScale = priceScale;
     }
 
@@ -37,16 +37,16 @@ public class TensorEqualizer extends Indicator {
         double balance = snapshot.getBalance();
         double price = snapshot.getPrice();
 
-        alpha1Count = 1 + alpha1 * alpha1Count;
+        alphaCount = 1 + alpha * alphaCount;
 
 
         // slow price
-        slowPriceSum = price + alpha1 * slowPriceSum;
-        double slowPrice = slowPriceSum / alpha1Count;
+        slowPriceSum = price + alpha * slowPriceSum;
+        double slowPrice = slowPriceSum / alphaCount;
 
         // slow balance
-        slowBalanceSum = balance + alpha1 * slowBalanceSum;
-        double slowBalance = slowBalanceSum / alpha1Count;
+        slowBalanceSum = balance + alpha * slowBalanceSum;
+        double slowBalance = slowBalanceSum / alphaCount;
 
         // balance velocity
         double balanceVelocity = balance - slowBalance;
@@ -58,15 +58,15 @@ public class TensorEqualizer extends Indicator {
         tension = balanceVelocity - priceVelocity;
 
         // slow tension
-        slowTensionSum = tension + alpha1 * slowTensionSum;
-        double slowTension = slowTensionSum / alpha1Count;
+        slowTensionSum = tension + alpha * slowTensionSum;
+        double slowTension = slowTensionSum / alphaCount;
 
         // instant variance
         double instantVariance = Math.pow(tension - slowTension, 2);
 
         // slow variance
-        slowVarianceSum = instantVariance + alpha1 * slowVarianceSum;
-        double variance = slowVarianceSum / alpha1Count;
+        slowVarianceSum = instantVariance + alpha * slowVarianceSum;
+        double variance = slowVarianceSum / alphaCount;
 
         // vollatility-adjusted tension
         sigmaTension = 100 * ((tension - slowTension) / Math.sqrt(variance));
@@ -85,7 +85,7 @@ public class TensorEqualizer extends Indicator {
 
     @Override
     public void reset() {
-        alpha1Count = 0;
+        alphaCount = 0;
         tension = 0;
         slowPriceSum = slowBalanceSum = slowTensionSum = slowVarianceSum = 0;
     }
