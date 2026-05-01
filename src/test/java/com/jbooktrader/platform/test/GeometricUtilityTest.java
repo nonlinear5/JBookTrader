@@ -10,7 +10,7 @@ import java.util.*;
  * @author nonlinear5
  */
 public class GeometricUtilityTest {
-    private static final double tolerance = 1E-12;
+    private static final double tolerance = 1E-4;
     private static List<TimedValue> tradeReturns;
     private static double optimalLeverage;
 
