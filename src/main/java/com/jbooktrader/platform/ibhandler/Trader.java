@@ -64,8 +64,7 @@ class Trader extends EWrapperAdapter {
                 return;
             }
 
-            Decimal d = execution.shares();
-            int quantity = (int) d.longValue();
+            long quantity = execution.shares().longValue();
             int cumulativeQuantity = (int) execution.cumQty().longValue();
             double avePrice = execution.avgPrice();
 

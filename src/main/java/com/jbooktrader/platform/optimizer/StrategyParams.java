@@ -25,7 +25,7 @@ public class StrategyParams {
     public String getKey() {
         StringBuilder key = new StringBuilder();
         for (StrategyParam param : params) {
-            if (key.length() > 0) {
+            if (!key.isEmpty()) {
                 key.append("/");
             }
             key.append(param.getValue());

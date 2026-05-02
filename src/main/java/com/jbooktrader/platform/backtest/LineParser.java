@@ -24,7 +24,7 @@ public class LineParser {
     private boolean isMarketDepth(String line) {
         boolean isComment = line.startsWith("#");
         boolean isProperty = line.contains("=");
-        boolean isBlankLine = (line.trim().length() == 0);
+        boolean isBlankLine = (line.trim().isEmpty());
         return !(isComment || isProperty || isBlankLine);
     }
 

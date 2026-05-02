@@ -190,8 +190,8 @@ public class Dispatcher {
         if (eventReport == null) {
             try {
                 eventReport = new EventReport();
-            } catch (IOException io) {
-                io.printStackTrace();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
         return eventReport;
