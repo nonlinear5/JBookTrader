@@ -41,7 +41,7 @@ mvn clean package
 The output JAR will be in the `target` directory, named like:
 
 ```
-jbooktrader.jar
+JBookTrader.jar
 ```
 
 ## Run
