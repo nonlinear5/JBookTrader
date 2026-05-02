@@ -27,6 +27,8 @@ jobs:
         java-version: '24'
         distribution: 'temurin'
         cache: maven
+    - name: Install dependency
+      run: mvn install:install-file -Dfile=lib/TwsApi-10.37.jar -DgroupId=com.ib -DartifactId=twsapi -Dversion=10.37 -Dpackaging=jar        
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
