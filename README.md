@@ -1,4 +1,4 @@
-
+[
 # JBookTrader
 
 JBookTrader is a Java-based trading platform that connects to Interactive Brokers via the TWS API. It provides tools for algorithmic trading, market data analysis, and order management.
@@ -7,7 +7,7 @@ JBookTrader is a Java-based trading platform that connects to Interactive Broker
 
 - Java 13 or higher
 - Maven 3.x
-- Interactive Brokers TWS API JAR (`TwsApi-10.37.jar`)
+
 
 ## Setup
 
@@ -47,9 +47,6 @@ To start the application:
 java -jar target/jbooktrader.jar
 ```
 
-## Notes
-
-- Ensure TWS or IB Gateway is running and configured to accept API connections.
-- Configuration files and logs are generated in the working directory.
-
-For more information, see the source code and documentation in the repository.
+## Support
+For support and questions, please join the [JBookTrader Google Group
+](https://groups.google.com/g/jbooktrader)
