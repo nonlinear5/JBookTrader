@@ -5,9 +5,10 @@
 /dist
 /target
 
-# project files
+# IntelliJ IDEA files
 /.idea
 .idea
+*.iml
 
 # run artifacts
 /reports
