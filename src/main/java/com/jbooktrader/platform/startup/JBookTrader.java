@@ -9,8 +9,14 @@ import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.net.BindException;
+import java.net.InetAddress;
+import java.net.ServerSocket;
 import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
+import java.nio.channels.OverlappingFileLockException;
 
 
 /**
@@ -23,6 +29,10 @@ public class JBookTrader {
     public static final String VERSION = "2026.1";
     public static final String RELEASE_DATE = "April 29, 2026";
     public static final String COPYRIGHT = "2013-2026 Eugene Kononov";
+
+    private static FileLock lock;
+    private static FileChannel channel;
+    private static final String lockFileName = "JBookTrader.lock";
 
     /**
      * Instantiates the necessary parts of the application: the application model,
@@ -45,10 +55,7 @@ public class JBookTrader {
      */
     public static void main(String[] args) {
         try {
-            File file = new File(System.getProperty("user.home"), APP_NAME + ".tmp");
-            FileChannel channel = new RandomAccessFile(file, "rw").getChannel();
-
-            if (channel.tryLock() == null) {
+            if (!lockInstance()) {
                 MessageDialog.showError(APP_NAME + " is already running.");
                 return;
             }
@@ -62,5 +69,36 @@ public class JBookTrader {
         } catch (Throwable t) {
             MessageDialog.showException(t);
         }
+    }
+
+
+    private static boolean lockInstance() throws IOException {
+        try {
+            final File file = new File(System.getProperty("java.io.tmpdir"), lockFileName);
+            channel = new RandomAccessFile(file, "rw").getChannel();
+
+            // Try to acquire an exclusive lock
+            lock = channel.tryLock();
+
+            if (lock != null) {
+                // Add shutdown hook to release lock and close channel on exit
+                Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                    try {
+                        if (lock != null) lock.release();
+                        channel.close();
+                        file.delete();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }));
+                return true;
+            }
+        } catch (OverlappingFileLockException e) {
+            // Lock is already held by this JVM
+            return false;
+        } catch (Exception e) {
+            throw e;
+        }
+        return false;
     }
 }
