@@ -1,6 +1,6 @@
 package com.jbooktrader.platform.optimizer;
 
-import com.jbooktrader.platform.model.*;
+import com.jbooktrader.platform.model.TableDataModel;
 
 /**
  * Strategy parameters table model.

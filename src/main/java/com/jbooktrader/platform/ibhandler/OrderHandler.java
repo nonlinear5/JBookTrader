@@ -1,10 +1,11 @@
 package com.jbooktrader.platform.ibhandler;
 
 
-import com.ib.client.*;
-import com.jbooktrader.platform.marketbook.*;
+import com.ib.client.Contract;
+import com.ib.client.Types;
+import com.jbooktrader.platform.marketbook.MarketSnapshot;
 
-import java.util.concurrent.*;
+import java.util.concurrent.BlockingQueue;
 
 /**
  * The main API class which serves as the entry point for API users. This class can be thought as a "facade",

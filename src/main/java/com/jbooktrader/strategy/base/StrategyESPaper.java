@@ -9,8 +9,9 @@ import com.jbooktrader.platform.strategy.Strategy;
 import com.jbooktrader.platform.util.contract.ContractFactory;
 
 /**
- *  Margin requirements: https://www.interactivebrokers.com/en/index.php?f=26662
- *  Initial margin (as of March 9, 2020): $12,740
+ * Margin requirements: https://www.interactivebrokers.com/en/index.php?f=26662
+ * Initial margin (as of March 9, 2020): $12,740
+ *
  * @author Eugene Kononov
  */
 public abstract class StrategyESPaper extends Strategy {

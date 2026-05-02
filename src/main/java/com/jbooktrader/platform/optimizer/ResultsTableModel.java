@@ -1,12 +1,14 @@
 package com.jbooktrader.platform.optimizer;
 
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.strategy.*;
-import com.jbooktrader.platform.util.format.*;
+import com.jbooktrader.platform.model.TableDataModel;
+import com.jbooktrader.platform.strategy.Strategy;
+import com.jbooktrader.platform.util.format.NumberFormatterFactory;
 
 import javax.swing.*;
-import java.text.*;
-import java.util.*;
+import java.text.DecimalFormat;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import static com.jbooktrader.platform.optimizer.PerformanceMetric.*;
 

@@ -1,6 +1,6 @@
 package com.jbooktrader.indicator.price;
 
-import com.jbooktrader.platform.indicator.*;
+import com.jbooktrader.platform.indicator.Indicator;
 
 /**
  * Normalized velocity of price

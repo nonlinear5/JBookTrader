@@ -1,19 +1,21 @@
 package com.jbooktrader.platform.optimizer;
 
-import com.jbooktrader.platform.backtest.*;
-import com.jbooktrader.platform.marketbook.*;
-import com.jbooktrader.platform.preferences.*;
-import com.jbooktrader.platform.report.*;
-import com.jbooktrader.platform.strategy.*;
-import com.jbooktrader.platform.util.format.*;
-import com.jbooktrader.platform.util.ui.*;
+import com.jbooktrader.platform.backtest.BackTestFileReader;
+import com.jbooktrader.platform.marketbook.MarketSnapshot;
+import com.jbooktrader.platform.preferences.JBTPreferences;
+import com.jbooktrader.platform.preferences.PreferencesHolder;
+import com.jbooktrader.platform.report.OptimizationReport;
+import com.jbooktrader.platform.strategy.Strategy;
+import com.jbooktrader.platform.util.format.NumberFormatterFactory;
+import com.jbooktrader.platform.util.ui.MessageDialog;
 
-import java.io.*;
-import java.lang.reflect.*;
-import java.text.*;
+import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.text.NumberFormat;
 import java.util.*;
 import java.util.concurrent.*;
-import java.util.concurrent.atomic.*;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicLong;
 
 import static com.jbooktrader.platform.optimizer.PerformanceMetric.*;
 

@@ -1,8 +1,9 @@
 package com.jbooktrader.platform.optimizer;
 
-import com.jbooktrader.platform.strategy.*;
+import com.jbooktrader.platform.strategy.Strategy;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.LinkedList;
 
 /**
  * @author Eugene Kononov

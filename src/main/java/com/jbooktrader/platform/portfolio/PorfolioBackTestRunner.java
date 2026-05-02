@@ -1,14 +1,19 @@
 package com.jbooktrader.platform.portfolio;
 
-import com.jbooktrader.platform.chart.*;
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.ordermanager.*;
-import com.jbooktrader.platform.performance.*;
-import com.jbooktrader.platform.strategy.*;
-import com.jbooktrader.platform.util.ui.*;
-import org.jfree.data.time.*;
+import com.jbooktrader.platform.chart.PerformanceChartData;
+import com.jbooktrader.platform.chart.TimedValue;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.ordermanager.OrderManagerAssistant;
+import com.jbooktrader.platform.performance.PerformanceManager;
+import com.jbooktrader.platform.strategy.Strategy;
+import com.jbooktrader.platform.util.ui.MessageDialog;
+import org.jfree.data.time.Second;
+import org.jfree.data.time.TimeSeries;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author Eugene Kononov

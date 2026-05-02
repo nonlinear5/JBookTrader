@@ -1,16 +1,18 @@
 package com.jbooktrader.platform.web;
 
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.preferences.*;
-import com.jbooktrader.platform.report.*;
-import com.jbooktrader.platform.startup.*;
-import com.jbooktrader.platform.util.ui.*;
-import com.sun.net.httpserver.*;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.preferences.PreferencesHolder;
+import com.jbooktrader.platform.report.EventReport;
+import com.jbooktrader.platform.startup.JBookTrader;
+import com.jbooktrader.platform.util.ui.MessageDialog;
+import com.sun.net.httpserver.HttpContext;
+import com.sun.net.httpserver.HttpServer;
 
-import java.net.*;
-import java.util.concurrent.*;
+import java.net.InetSocketAddress;
+import java.util.concurrent.Executors;
 
-import static com.jbooktrader.platform.preferences.JBTPreferences.*;
+import static com.jbooktrader.platform.preferences.JBTPreferences.WebAccess;
+import static com.jbooktrader.platform.preferences.JBTPreferences.WebAccessPort;
 
 /**
  * @author Eugene Kononov

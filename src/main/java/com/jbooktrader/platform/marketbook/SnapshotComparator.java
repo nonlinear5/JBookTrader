@@ -1,6 +1,6 @@
 package com.jbooktrader.platform.marketbook;
 
-import java.util.*;
+import java.util.Comparator;
 
 /**
  * Comparator for market snapshots.

@@ -1,10 +1,11 @@
 package com.jbooktrader.platform.snapshotwriter;
 
-import com.jbooktrader.platform.marketbook.*;
-import com.jbooktrader.platform.model.*;
+import com.jbooktrader.platform.marketbook.MarketSnapshot;
+import com.jbooktrader.platform.model.Dispatcher;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Eugene Kononov

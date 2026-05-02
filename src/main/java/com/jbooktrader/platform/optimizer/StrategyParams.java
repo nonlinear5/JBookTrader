@@ -1,6 +1,7 @@
 package com.jbooktrader.platform.optimizer;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author Eugene Kononov

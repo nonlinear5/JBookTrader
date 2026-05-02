@@ -1,26 +1,35 @@
 package com.jbooktrader.platform.chart;
 
 import com.jbooktrader.platform.optimizer.*;
-import com.jbooktrader.platform.preferences.*;
-import com.jbooktrader.platform.util.ui.*;
-import org.jfree.chart.*;
-import org.jfree.chart.axis.*;
-import org.jfree.chart.block.*;
-import org.jfree.chart.plot.*;
-import org.jfree.chart.renderer.*;
-import org.jfree.chart.renderer.xy.*;
-import org.jfree.chart.title.*;
-import org.jfree.data.xy.*;
-import org.jfree.ui.*;
+import com.jbooktrader.platform.preferences.PreferencesHolder;
+import com.jbooktrader.platform.util.ui.SpringUtilities;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.block.BlockBorder;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.PaintScale;
+import org.jfree.chart.renderer.xy.XYBlockRenderer;
+import org.jfree.chart.title.PaintScaleLegend;
+import org.jfree.data.xy.DefaultXYZDataset;
+import org.jfree.data.xy.XYZDataset;
+import org.jfree.ui.RectangleEdge;
+import org.jfree.ui.RectangleInsets;
 
 import javax.swing.*;
-import javax.swing.border.*;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.*;
+import java.util.Map;
 
-import static com.jbooktrader.platform.preferences.JBTPreferences.*;
+import static com.jbooktrader.platform.preferences.JBTPreferences.OptimizationMapHeight;
+import static com.jbooktrader.platform.preferences.JBTPreferences.OptimizationMapWidth;
 
 
 /**

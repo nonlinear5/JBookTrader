@@ -1,8 +1,8 @@
 package com.jbooktrader.platform.performance;
 
-import com.jbooktrader.platform.chart.*;
+import com.jbooktrader.platform.chart.TimedValue;
 
-import java.util.*;
+import java.util.List;
 
 /**
  * @author Eugene Kononov
@@ -42,20 +42,18 @@ public abstract class FunctionEvaluator {
 
     public double getMaxLeverage() {
         double largestLoss = 0;
-        double totalReturn = 1;
+        //double totalReturn = 1;
         for (TimedValue tradeReturn : tradeReturns) {
             double r = getWeightedReturn(tradeReturn);
-            totalReturn *= (1 + r);
+            //totalReturn *= (1 + r);
             if (r < largestLoss) {
                 largestLoss = r;
             }
         }
 
-        // if (totalReturn < 1) {
-        //   return 0;
-        //}// else {
+
         return -1 / largestLoss;
-        //}
+
     }
 
 

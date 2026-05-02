@@ -1,19 +1,22 @@
 package com.jbooktrader.platform.backtest;
 
-import com.jbooktrader.platform.chart.*;
-import com.jbooktrader.platform.dialog.*;
-import com.jbooktrader.platform.marketbook.*;
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.preferences.*;
-import com.jbooktrader.platform.strategy.*;
-import com.jbooktrader.platform.util.ui.*;
-import com.toedter.calendar.*;
+import com.jbooktrader.platform.chart.BarSize;
+import com.jbooktrader.platform.dialog.JBTDialog;
+import com.jbooktrader.platform.marketbook.MarketSnapshotFilter;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.preferences.PreferencesHolder;
+import com.jbooktrader.platform.strategy.Strategy;
+import com.jbooktrader.platform.util.ui.MessageDialog;
+import com.jbooktrader.platform.util.ui.SpringUtilities;
+import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JTextFieldDateEditor;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import java.util.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.util.Date;
 
 import static com.jbooktrader.platform.preferences.JBTPreferences.*;
 

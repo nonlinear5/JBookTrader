@@ -1,12 +1,13 @@
 package com.jbooktrader.platform.snapshotwriter;
 
-import com.jbooktrader.platform.marketbook.*;
-import com.jbooktrader.platform.startup.*;
-import com.jbooktrader.platform.util.format.*;
+import com.jbooktrader.platform.marketbook.MarketSnapshot;
+import com.jbooktrader.platform.startup.JBookTrader;
+import com.jbooktrader.platform.util.format.NumberFormatterFactory;
 
 import java.io.*;
-import java.text.*;
-import java.util.*;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 
 
 /**
@@ -41,12 +42,11 @@ public class SnapshotWriter {
     }
 
     public void write(MarketSnapshot marketSnapshot) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(dateFormat.format(marketSnapshot.getTime())).append(",");
-        sb.append(df2.format(marketSnapshot.getBalance())).append(",");
-        sb.append(df6.format(marketSnapshot.getBid())).append(",");
-        sb.append(df6.format(marketSnapshot.getAsk())).append(",");
-        sb.append(marketSnapshot.getVolume());
+        String sb = dateFormat.format(marketSnapshot.getTime()) + "," +
+                df2.format(marketSnapshot.getBalance()) + "," +
+                df6.format(marketSnapshot.getBid()) + "," +
+                df6.format(marketSnapshot.getAsk()) + "," +
+                marketSnapshot.getVolume();
 
         writer.println(sb);
         writer.flush();

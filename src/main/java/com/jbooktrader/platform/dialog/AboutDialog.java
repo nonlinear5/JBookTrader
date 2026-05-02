@@ -1,12 +1,13 @@
 package com.jbooktrader.platform.dialog;
 
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.startup.*;
-import com.jbooktrader.platform.util.ui.*;
+import com.jbooktrader.platform.model.TableDataModel;
+import com.jbooktrader.platform.startup.JBookTrader;
+import com.jbooktrader.platform.util.ui.SpringUtilities;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
+import java.util.Enumeration;
+import java.util.Properties;
 
 /**
  * Dialog to show the application info, system info, and IB API info.

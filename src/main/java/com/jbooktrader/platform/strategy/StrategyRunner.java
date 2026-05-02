@@ -1,17 +1,24 @@
 package com.jbooktrader.platform.strategy;
 
-import com.jbooktrader.platform.email.*;
-import com.jbooktrader.platform.marketbook.*;
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.ordermanager.*;
-import com.jbooktrader.platform.preferences.*;
-import com.jbooktrader.platform.report.*;
-import com.jbooktrader.platform.util.ntp.*;
+import com.jbooktrader.platform.email.Notifier;
+import com.jbooktrader.platform.marketbook.MarketSnapshot;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.model.Mode;
+import com.jbooktrader.platform.ordermanager.OrderManagerAssistant;
+import com.jbooktrader.platform.preferences.PreferencesHolder;
+import com.jbooktrader.platform.report.EventReport;
+import com.jbooktrader.platform.util.ntp.DaySchedule;
+import com.jbooktrader.platform.util.ntp.NTPClock;
 
-import java.util.*;
-import java.util.concurrent.*;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-import static com.jbooktrader.platform.preferences.JBTPreferences.*;
+import static com.jbooktrader.platform.preferences.JBTPreferences.MarketDataTimeoutSeconds;
 
 /**
  * @author Eugene Kononov
@@ -100,14 +107,14 @@ public class StrategyRunner {
                     } catch (Exception e) {
                         eventReport.report(e);
                         Notifier.getInstance().submit(e.getMessage());
-                        String reason = "critical exception occured: " + e.toString();
+                        String reason = "critical exception occured: " + e;
                         orderManagerAssistant.forceClose(reason);
                     }
                 }
             } catch (InterruptedException e) {
                 eventReport.report(e);
                 Notifier.getInstance().submit(e.getMessage());
-                String reason = "critical exception occured: " + e.toString();
+                String reason = "critical exception occured: " + e;
                 orderManagerAssistant.forceClose(reason);
             }
         }

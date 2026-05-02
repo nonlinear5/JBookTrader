@@ -1,13 +1,16 @@
 package com.jbooktrader.platform.email;
 
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.preferences.*;
-import com.jbooktrader.platform.report.*;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.model.Mode;
+import com.jbooktrader.platform.preferences.PreferencesHolder;
+import com.jbooktrader.platform.report.EventReport;
 
 import javax.mail.*;
-import javax.mail.internet.*;
-import java.util.*;
-import java.util.concurrent.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import static com.jbooktrader.platform.preferences.JBTPreferences.*;
 

@@ -72,7 +72,7 @@ public class TensorEqualizer extends Indicator {
         sigmaTension = 100 * ((tension - slowTension) / Math.sqrt(variance));
 
         // this is used for displaying the value of the indicator on the chart
-       value = sigmaTension;
+        value = sigmaTension;
     }
 
     public double getSigmaTension() {

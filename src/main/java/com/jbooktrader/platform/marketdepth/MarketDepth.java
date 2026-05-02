@@ -1,12 +1,15 @@
 package com.jbooktrader.platform.marketdepth;
 
-import com.ib.client.*;
-import com.jbooktrader.platform.marketbook.*;
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.report.*;
-import com.jbooktrader.platform.util.ntp.*;
+import com.ib.client.Contract;
+import com.jbooktrader.platform.marketbook.BalanceAggregator;
+import com.jbooktrader.platform.marketbook.MarketSnapshot;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.report.EventReport;
+import com.jbooktrader.platform.util.ntp.DaySchedule;
+import com.jbooktrader.platform.util.ntp.NTPClock;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Holds history of market snapshots for a trading instrument.

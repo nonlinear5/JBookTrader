@@ -1,6 +1,6 @@
 package com.jbooktrader.platform.report;
 
-import com.jbooktrader.platform.model.*;
+import com.jbooktrader.platform.model.Dispatcher;
 
 import java.io.*;
 

@@ -1,13 +1,16 @@
 package com.jbooktrader.platform.ordermanager;
 
-import com.jbooktrader.platform.email.*;
-import com.jbooktrader.platform.ibhandler.*;
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.position.*;
-import com.jbooktrader.platform.report.*;
-import com.jbooktrader.platform.strategy.*;
+import com.jbooktrader.platform.email.Notifier;
+import com.jbooktrader.platform.ibhandler.OrderExecution;
+import com.jbooktrader.platform.ibhandler.OrderHandlerListener;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.model.Mode;
+import com.jbooktrader.platform.model.ModelListener;
+import com.jbooktrader.platform.position.PositionManager;
+import com.jbooktrader.platform.report.EventReport;
+import com.jbooktrader.platform.strategy.Strategy;
 
-import java.util.*;
+import java.util.Map;
 
 /**
  * @author Eugene Kononov

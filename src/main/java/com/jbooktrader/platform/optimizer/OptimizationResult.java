@@ -1,6 +1,6 @@
 package com.jbooktrader.platform.optimizer;
 
-import com.jbooktrader.platform.performance.*;
+import com.jbooktrader.platform.performance.PerformanceManager;
 
 
 /**

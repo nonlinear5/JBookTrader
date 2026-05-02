@@ -1,14 +1,16 @@
 package com.jbooktrader.platform.startup;
 
 
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.util.ui.*;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.model.MainFrameController;
+import com.jbooktrader.platform.util.ui.MessageDialog;
 
 import javax.swing.*;
-import javax.swing.plaf.nimbus.*;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
-import java.io.*;
-import java.nio.channels.*;
+import java.io.File;
+import java.io.RandomAccessFile;
+import java.nio.channels.FileChannel;
 
 
 /**

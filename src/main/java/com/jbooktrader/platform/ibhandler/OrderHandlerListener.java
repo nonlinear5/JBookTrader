@@ -1,6 +1,6 @@
 package com.jbooktrader.platform.ibhandler;
 
-import java.util.*;
+import java.util.Map;
 
 /**
  * This is the interface for the implementing class which acts as a "listener" to all Order Handler events.
@@ -95,7 +95,7 @@ public interface OrderHandlerListener {
      * This callback fires when an informational message is received from the exchange or from the IB. These messages
      * are typically about particular instruments which are temporarily unavalable for trading due to technical problems
      * at the exchange where those instruments are traded. Here is an example of a bulletin:
-     *
+     * <p>
      * <i>To CBOE2 traders: Mon Oct 19 10:16:54 2015 EST CBOE2 is currently unavailable for trading due to technical
      * problems at the exchange.</i>
      *

@@ -1,23 +1,28 @@
 package com.jbooktrader.platform.model;
 
 
-import com.jbooktrader.platform.email.*;
-import com.jbooktrader.platform.ibhandler.*;
-import com.jbooktrader.platform.marketbook.*;
-import com.jbooktrader.platform.model.ModelListener.*;
-import com.jbooktrader.platform.ordermanager.*;
-import com.jbooktrader.platform.portfolio.*;
-import com.jbooktrader.platform.preferences.*;
-import com.jbooktrader.platform.report.*;
-import com.jbooktrader.platform.startup.*;
-import com.jbooktrader.platform.strategy.*;
-import com.jbooktrader.platform.util.ntp.*;
-import com.jbooktrader.platform.web.*;
+import com.jbooktrader.platform.email.Notifier;
+import com.jbooktrader.platform.ibhandler.OrderHandler;
+import com.jbooktrader.platform.marketbook.MarketSnapshot;
+import com.jbooktrader.platform.model.ModelListener.Event;
+import com.jbooktrader.platform.ordermanager.OrderManager;
+import com.jbooktrader.platform.portfolio.PortfolioManager;
+import com.jbooktrader.platform.preferences.PreferencesHolder;
+import com.jbooktrader.platform.report.EventReport;
+import com.jbooktrader.platform.startup.JBookTrader;
+import com.jbooktrader.platform.strategy.Strategy;
+import com.jbooktrader.platform.strategy.StrategyLoader;
+import com.jbooktrader.platform.util.ntp.DaySchedule;
+import com.jbooktrader.platform.util.ntp.NTPClock;
+import com.jbooktrader.platform.web.MonitoringServer;
 
-import java.io.*;
-import java.nio.file.*;
-import java.util.*;
-import java.util.concurrent.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.BlockingQueue;
 
 import static com.jbooktrader.platform.preferences.JBTPreferences.*;
 

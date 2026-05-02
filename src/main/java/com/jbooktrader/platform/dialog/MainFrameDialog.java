@@ -1,21 +1,28 @@
 package com.jbooktrader.platform.dialog;
 
 
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.preferences.*;
-import com.jbooktrader.platform.startup.*;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.model.Mode;
+import com.jbooktrader.platform.model.ModelListener;
+import com.jbooktrader.platform.model.StrategyTableModel;
+import com.jbooktrader.platform.preferences.PreferencesHolder;
+import com.jbooktrader.platform.startup.JBookTrader;
 import com.jbooktrader.platform.strategy.Strategy;
-import com.jbooktrader.platform.util.ui.*;
+import com.jbooktrader.platform.util.ui.MessageDialog;
 
 import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.table.*;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
-import java.awt.event.*;
-import java.net.*;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.net.URL;
 
-import static com.jbooktrader.platform.model.StrategyTableColumn.*;
-import static com.jbooktrader.platform.preferences.JBTPreferences.*;
+import static com.jbooktrader.platform.model.StrategyTableColumn.Strategy;
+import static com.jbooktrader.platform.preferences.JBTPreferences.MainWindowHeight;
+import static com.jbooktrader.platform.preferences.JBTPreferences.MainWindowWidth;
 
 /**
  * Main application window. All the system logic is intentionally left out if this class,
@@ -69,11 +76,7 @@ public class MainFrameDialog extends JFrame implements ModelListener {
 
                 Mode mode = dispatcher.getMode();
 
-                if (mode == Mode.Trade) {
-                    suspendLiveTradingMenuItem.setEnabled(true);
-                } else {
-                    suspendLiveTradingMenuItem.setEnabled(false);
-                }
+                suspendLiveTradingMenuItem.setEnabled(mode == Mode.Trade);
                 if (mode == Mode.Trade || mode == Mode.ForwardTest) {
                     backTestMenuItem.setEnabled(false);
                     optimizeMenuItem.setEnabled(false);

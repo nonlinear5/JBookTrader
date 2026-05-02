@@ -1,10 +1,16 @@
 package com.jbooktrader.platform.ibhandler;
 
-import com.ib.client.*;
+import com.ib.client.Contract;
+import com.ib.client.ContractDetails;
+import com.ib.client.Decimal;
+import com.ib.client.Execution;
 
-import java.io.*;
-import java.util.*;
-import java.util.concurrent.*;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * This class acts as a "wrapper" in the IB's API terminology.
@@ -199,7 +205,8 @@ class Trader extends EWrapperAdapter {
     }
 
     //@Override
-    @Override public void error(int id, long errorTime, int errorCode, String errorMsg, String advancedOrderRejectJson) {
+    @Override
+    public void error(int id, long errorTime, int errorCode, String errorMsg, String advancedOrderRejectJson) {
         try {
             String msg = "[Id: " + id + ", code: " + errorCode + ", msg: " + errorMsg + "]";
             if (msg.equals(previousErrorMessage)) {
@@ -253,7 +260,7 @@ class Trader extends EWrapperAdapter {
 
 
     @Override
-   public void tickSize( int tickerId, int field, Decimal size) {
+    public void tickSize(int tickerId, int field, Decimal size) {
         try {
             marketDataHandler.tickSize(tickerId, field, (int) size.longValue());
         } catch (Throwable t) {

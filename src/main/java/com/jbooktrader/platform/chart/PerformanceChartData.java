@@ -1,9 +1,12 @@
 package com.jbooktrader.platform.chart;
 
-import com.jbooktrader.platform.indicator.*;
-import com.jbooktrader.platform.marketbook.*;
-import org.jfree.data.time.*;
-import org.jfree.data.xy.*;
+import com.jbooktrader.platform.indicator.Indicator;
+import com.jbooktrader.platform.marketbook.MarketSnapshot;
+import org.jfree.data.time.Second;
+import org.jfree.data.time.TimeSeries;
+import org.jfree.data.xy.DefaultOHLCDataset;
+import org.jfree.data.xy.OHLCDataItem;
+import org.jfree.data.xy.OHLCDataset;
 
 import java.util.*;
 

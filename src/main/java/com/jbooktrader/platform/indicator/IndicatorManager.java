@@ -1,8 +1,10 @@
 package com.jbooktrader.platform.indicator;
 
-import com.jbooktrader.platform.marketbook.*;
+import com.jbooktrader.platform.marketbook.MarketBook;
+import com.jbooktrader.platform.marketbook.MarketSnapshot;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Eugene Kononov
@@ -74,6 +76,6 @@ public class IndicatorManager {
             indicator.calculate();
         }
 
-        return (samples >= MIN_SAMPLE_SIZE) ;
+        return (samples >= MIN_SAMPLE_SIZE);
     }
 }

@@ -1,6 +1,6 @@
 package com.jbooktrader.platform.optimizer;
 
-import java.util.*;
+import java.util.Comparator;
 
 /**
  * Comparator for strategy optimization results.

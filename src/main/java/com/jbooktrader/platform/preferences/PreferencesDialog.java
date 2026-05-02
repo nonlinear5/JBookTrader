@@ -1,13 +1,14 @@
 package com.jbooktrader.platform.preferences;
 
-import com.jbooktrader.platform.dialog.*;
-import com.jbooktrader.platform.email.*;
-import com.jbooktrader.platform.startup.*;
-import com.jbooktrader.platform.util.ui.*;
+import com.jbooktrader.platform.dialog.JBTDialog;
+import com.jbooktrader.platform.email.Notifier;
+import com.jbooktrader.platform.startup.JBookTrader;
+import com.jbooktrader.platform.util.ui.MessageDialog;
+import com.jbooktrader.platform.util.ui.SpringUtilities;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
+import java.util.Date;
 
 import static com.jbooktrader.platform.preferences.JBTPreferences.*;
 

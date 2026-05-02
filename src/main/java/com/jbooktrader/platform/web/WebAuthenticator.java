@@ -1,10 +1,11 @@
 package com.jbooktrader.platform.web;
 
-import com.jbooktrader.platform.preferences.*;
-import com.jbooktrader.platform.startup.*;
-import com.sun.net.httpserver.*;
+import com.jbooktrader.platform.preferences.PreferencesHolder;
+import com.jbooktrader.platform.startup.JBookTrader;
+import com.sun.net.httpserver.BasicAuthenticator;
 
-import static com.jbooktrader.platform.preferences.JBTPreferences.*;
+import static com.jbooktrader.platform.preferences.JBTPreferences.WebAccessPassword;
+import static com.jbooktrader.platform.preferences.JBTPreferences.WebAccessUser;
 
 /**
  * @author Eugene Kononov

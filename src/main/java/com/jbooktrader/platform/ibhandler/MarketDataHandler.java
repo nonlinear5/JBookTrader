@@ -1,14 +1,18 @@
 package com.jbooktrader.platform.ibhandler;
 
-import com.ib.client.*;
-import com.jbooktrader.platform.marketbook.*;
-import com.jbooktrader.platform.marketdepth.*;
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.report.*;
-import com.jbooktrader.platform.snapshotwriter.*;
+import com.ib.client.Contract;
+import com.ib.client.EClientSocket;
+import com.ib.client.TickType;
+import com.jbooktrader.platform.marketbook.MarketSnapshot;
+import com.jbooktrader.platform.marketdepth.MarketDepth;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.report.EventReport;
+import com.jbooktrader.platform.snapshotwriter.SnapshotWriterManager;
 
-import java.util.*;
-import java.util.concurrent.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.BlockingQueue;
 
 /**
  * @author Eugene Kononov

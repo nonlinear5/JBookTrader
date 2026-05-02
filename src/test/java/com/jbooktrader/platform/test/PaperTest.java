@@ -1,10 +1,12 @@
 package com.jbooktrader.platform.test;
 
-import com.jbooktrader.platform.chart.*;
-import com.jbooktrader.platform.performance.*;
-import org.junit.*;
+import com.jbooktrader.platform.chart.TimedValue;
+import com.jbooktrader.platform.performance.MaximumSearch;
+import com.jbooktrader.platform.performance.PrudenceEvaluator;
+import org.junit.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author nonlinear5

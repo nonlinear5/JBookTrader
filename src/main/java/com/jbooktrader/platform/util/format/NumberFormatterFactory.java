@@ -1,6 +1,8 @@
 package com.jbooktrader.platform.util.format;
 
-import java.text.*;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 
 /**
  * @author Eugene Kononov

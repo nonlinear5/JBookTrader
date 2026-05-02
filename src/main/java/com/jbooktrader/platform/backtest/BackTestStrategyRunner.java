@@ -1,8 +1,8 @@
 package com.jbooktrader.platform.backtest;
 
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.strategy.*;
-import com.jbooktrader.platform.util.ui.*;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.strategy.Strategy;
+import com.jbooktrader.platform.util.ui.MessageDialog;
 
 /**
  * Runs a trading strategy in the back testing mode using a file containing

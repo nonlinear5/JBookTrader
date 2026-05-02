@@ -2,9 +2,11 @@ package com.jbooktrader.platform.ibhandler;
 
 import com.ib.client.*;
 
-import java.util.*;
-import java.util.concurrent.*;
-import com.ib.client.Decimal;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Semaphore;
 
 
 /**
@@ -137,13 +139,13 @@ class TraderAssistant {
     }
 
     void releaseAccount(String account) {
-       this.account = account;
-       accountSemaphore.release();
+        this.account = account;
+        accountSemaphore.release();
     }
 
     private boolean acquireAccountInfo() {
         try {
-           return accountSemaphore.tryAcquire();
+            return accountSemaphore.tryAcquire();
         } catch (Exception e) {
             return false;
         }

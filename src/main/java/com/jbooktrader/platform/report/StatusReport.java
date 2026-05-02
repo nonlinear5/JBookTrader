@@ -1,12 +1,14 @@
 package com.jbooktrader.platform.report;
 
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.performance.*;
-import com.jbooktrader.platform.strategy.*;
-import com.jbooktrader.platform.util.format.*;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.performance.PerformanceManager;
+import com.jbooktrader.platform.strategy.Strategy;
+import com.jbooktrader.platform.util.format.NumberFormatterFactory;
 
-import java.text.*;
-import java.util.*;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author Eugene Kononov

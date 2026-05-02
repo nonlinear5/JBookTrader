@@ -1,15 +1,17 @@
 package com.jbooktrader.strategy.base;
 
-import com.ib.client.*;
-import com.jbooktrader.platform.commission.*;
-import com.jbooktrader.platform.optimizer.*;
-import com.jbooktrader.platform.schedule.*;
-import com.jbooktrader.platform.strategy.*;
-import com.jbooktrader.platform.util.contract.*;
+import com.ib.client.Contract;
+import com.jbooktrader.platform.commission.Commission;
+import com.jbooktrader.platform.commission.CommissionFactory;
+import com.jbooktrader.platform.optimizer.StrategyParams;
+import com.jbooktrader.platform.schedule.TradingSchedule;
+import com.jbooktrader.platform.strategy.Strategy;
+import com.jbooktrader.platform.util.contract.ContractFactory;
 
 /**
- *  Margin requirements: https://www.interactivebrokers.com/en/index.php?f=26662
- *  Initial margin (as of March 9, 2020): $12,740
+ * Margin requirements: https://www.interactivebrokers.com/en/index.php?f=26662
+ * Initial margin (as of March 9, 2020): $12,740
+ *
  * @author Eugene Kononov
  */
 public abstract class StrategyES extends Strategy {

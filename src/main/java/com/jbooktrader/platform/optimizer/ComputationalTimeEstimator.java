@@ -1,7 +1,7 @@
 package com.jbooktrader.platform.optimizer;
 
-import java.text.*;
-import java.util.*;
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 
 /**
  * "Remaining time" estimator for long-running computational processes, such as strategy optimization.

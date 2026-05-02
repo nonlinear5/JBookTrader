@@ -1,10 +1,12 @@
 package com.jbooktrader.platform.test;
 
-import com.jbooktrader.platform.chart.*;
+import com.jbooktrader.platform.chart.TimedValue;
 import com.jbooktrader.platform.performance.*;
-import org.junit.*;
+import org.junit.Assert;
+import org.junit.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author nonlinear5
@@ -468,9 +470,6 @@ public class GeometricUtilityTest {
 
         String kernelName = "Uniform";
 
-        //PrudenceEvaluator prudenceEvaluator = new PrudenceEvaluator(tradeReturns, kernelName);
-        //double kellyLeverage = search.findArgMax(prudenceEvaluator);
-        //System.out.println("kelly leverage:   " + kellyLeverage);
 
         KellyEvaluator kellyEvaluator = new KellyEvaluator(tradeReturns, kernelName);
         double kellyLeverage = search.findArgMax(kellyEvaluator);
@@ -489,111 +488,10 @@ public class GeometricUtilityTest {
 
         PowerEvaluatorHalfKelly halfKelly = new PowerEvaluatorHalfKelly(tradeReturns, kernelName);
         double halfKellyLeverage = search.findArgMax(halfKelly);
-        //System.out.println("half kelly, leverage:   " + halfKellyLeverage);
-        //System.out.println("half kelly, evaluate:   " + halfKelly.evaluate(halfKellyLeverage));
-        //System.out.println("half kelly, evaluateLog:   " + halfKelly.evaluateLog(halfKellyLeverage));
-
-
-        //MaxAccelerationEvaluator maxAccelerationEvaluator = new MaxAccelerationEvaluator(tradeReturns, kernelName);
-        //double maxAccLeverage = search.findArgMax(maxAccelerationEvaluator);
-        //System.out.println("max acc, leverage:   " + maxAccLeverage);
-        //System.out.println("max acc, evaluate:   " + maxAccelerationEvaluator.evaluate(maxAccLeverage));
-        //System.out.println("max acc, evaluateLog:   " + maxAccelerationEvaluator.evaluateLog(maxAccLeverage));
-
-
-        //double prudentLeverage = kellyLeverage / 4;
-        //System.out.println("prudent leverage:  " + prudentLeverage);
-
-        //double maxAccelerationLeverage = search.findArgMax(new MaxAccelerationEvaluator(tradeReturns, kernelName));
-        //System.out.println("max acc leverage: " + maxAccelerationLeverage + ", f: " + maxAccelerationLeverage/(prudentLeverage*4));
-
-
-        //double kellyGrowth = prudenceEvaluator.evaluate(kellyLeverage);
-        //double ratio = kellyGrowth / kellyLeverage;
-        //AdHocEvaluator3 adHoc = new AdHocEvaluator3(tradeReturns, kernelName, ratio);
-        //double adHocLeverage = search.findArgMax2(adHoc, kellyLeverage);
-        //System.out.println("ad hoc leverage3:    " + adHocLeverage + ", f: " + adHocLeverage/kellyLeverage);
-
-        //YoudenEvaluator youdenEvaluator = new YoudenEvaluator(tradeReturns, kernelName);
-        //double youdenLeverage = search.findArgMax(youdenEvaluator);
-        //System.out.println("youden leverage:   " + youdenLeverage );
-
-
-        //PowerEvaluator3 powerEvaluator3 = new PowerEvaluator3(tradeReturns, kernelName);
-        //double powerLeverage = search.findArgMax2(powerEvaluator3, kernelName, kellyLeverage, kellyGrowth);
-        //System.out.println("power leverage: " + powerLeverage + ", f: " + powerLeverage / kellyLeverage);
-
-
-        //EliteEvaluator eliteEvaluator = new EliteEvaluator(tradeReturns, kernelName, kellyLeverage);
-        //double eliteLeverage = search.findArgMax2(eliteEvaluator, kellyLeverage);
-        //System.out.println("elite leverage: " + eliteLeverage + ", f: " + eliteLeverage / kellyLeverage);
-
-
-        //AdHocEvaluator4 adHoc4 = new AdHocEvaluator4(tradeReturns, kernelName, kellyLeverage, kellyGrowth);
-        //double adHocLeverage4 = search.findArgMax2(adHoc4, kellyLeverage);
-        //System.out.println("ad hoc leverage4 : " + adHocLeverage4 + ", f: " + adHocLeverage4/kellyLeverage);
-
-
-        //DoubleLogEvaluator doubleLog = new DoubleLogEvaluator(tradeReturns, kernelName, kellyLeverage, kellyGrowth);
-        //double doubleLogLeverage = search.findArgMax2(doubleLog, kellyLeverage);
-        //System.out.println("double log leverage: " + doubleLogLeverage + ", f: " + doubleLogLeverage/kellyLeverage);
-
-
-        //MarginalEvaluator ma = new MarginalEvaluator(tradeReturns, kernelName, kellyLeverage, kellyGrowth);
-        //double marginalLeverage = ma.getOptLeverage();
-        //System.out.println("marginal leverage: " + marginalLeverage);
-
-
-        //AdHocEvaluator4 adHoc4= new AdHocEvaluator4(tradeReturns, kernelName, kellyLeverage, kellyGrowth);
-        //double adHocLeverage4 = search.findArgMax2(adHoc4, kellyLeverage);
-        //System.out.println("ad hoc leverage4:  " + adHocLeverage4 + ", f: " + adHocLeverage4/kellyLeverage);
-
-
-        //double adHocLeverage2 = adHoc.getOptLeverage2();
-        //System.out.println("ad hoc leverage2:  " + adHocLeverage2 + ", f: " + adHocLeverage2/(prudentLeverage*4));
-
-
-        //double expLeverage = search.findArgMax(new ExponentialEvaluator(tradeReturns, kernelName));
-        //System.out.println("exp kelly leverage: " + expLeverage);
-
-        //double powerLeverage = search.findArgMax(new PowerEvaluator(tradeReturns, kernelName));
-        //System.out.println("pow kelly leverage: " + powerLeverage);
-
-        //PowerEvaluator2 pe2 = new PowerEvaluator2(tradeReturns, kernelName);
-        //double pow2Leverage = pe2.getOptLeverage();
-        //System.out.println("pow2 kelly leverage: " + pow2Leverage + ", f1: " + pow2Leverage/(prudentLeverage*4) + "f2: " + pow2Leverage/prudentLeverage);
-
-
-        //double maxAccelerationLeverage = search.findArgMax(new MaxAccelerationEvaluator(tradeReturns, kernelName));
-        //System.out.println("max accel leverage: " + maxAccelerationLeverage);
-
 
         optimalLeverage = halfKellyLeverage;
         System.out.println();
     }
-
-
-    /*
-    @Test
-    public void testClassicLeveragePaper() {
-        tradeReturns = new ArrayList<>();
-        GeometricUtilityTest optimalLeverageCalculatorTest = new GeometricUtilityTest();
-
-        tradeReturns.clear();
-        tradeReturns.add(new TimedValue(1, 0.1));
-        tradeReturns.add(new TimedValue(2, 0.2));
-        tradeReturns.add(new TimedValue(3, -0.1));
-        tradeReturns.add(new TimedValue(4, -0.2));
-        tradeReturns.add(new TimedValue(5, 0.3));
-        tradeReturns.add(new TimedValue(6, 0.4));
-        tradeReturns.add(new TimedValue(7, -0.3));
-        tradeReturns.add(new TimedValue(8, -0.2));
-        tradeReturns.add(new TimedValue(9, -0.1));
-        tradeReturns.add(new TimedValue(10, 0.1));
-        optimalLeverageCalculatorTest.evaluate2("paper test new");
-
-    }
-*/
 
 
 }

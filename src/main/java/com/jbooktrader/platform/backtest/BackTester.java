@@ -1,17 +1,18 @@
 package com.jbooktrader.platform.backtest;
 
 
-import com.jbooktrader.platform.chart.*;
-import com.jbooktrader.platform.indicator.*;
-import com.jbooktrader.platform.marketbook.*;
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.model.ModelListener.*;
-import com.jbooktrader.platform.performance.*;
-import com.jbooktrader.platform.schedule.*;
-import com.jbooktrader.platform.strategy.*;
+import com.jbooktrader.platform.chart.PerformanceChartData;
+import com.jbooktrader.platform.indicator.Indicator;
+import com.jbooktrader.platform.indicator.IndicatorManager;
+import com.jbooktrader.platform.marketbook.MarketBook;
+import com.jbooktrader.platform.marketbook.MarketSnapshot;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.model.ModelListener.Event;
+import com.jbooktrader.platform.performance.PerformanceManager;
+import com.jbooktrader.platform.schedule.TradingSchedule;
+import com.jbooktrader.platform.strategy.Strategy;
 
-import java.io.*;
-import java.util.*;
+import java.util.List;
 
 /**
  * This class is responsible for running the strategy using historical market data
@@ -29,7 +30,7 @@ class BackTester {
         this.backTestDialog = backTestDialog;
     }
 
-    void execute()  {
+    void execute() {
         List<MarketSnapshot> snapshots = backTestFileReader.load(backTestDialog);
         PerformanceManager performanceManager = strategy.getPerformanceManager();
 

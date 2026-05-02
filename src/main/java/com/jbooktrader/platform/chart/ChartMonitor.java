@@ -1,6 +1,7 @@
 package com.jbooktrader.platform.chart;
 
-import org.jfree.chart.*;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
 
 import java.awt.*;
 

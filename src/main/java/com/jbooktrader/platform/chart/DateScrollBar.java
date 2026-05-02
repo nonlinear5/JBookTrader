@@ -1,14 +1,18 @@
 package com.jbooktrader.platform.chart;
 
-import org.jfree.chart.axis.*;
-import org.jfree.chart.event.*;
-import org.jfree.chart.plot.*;
-import org.jfree.chart.renderer.*;
-import org.jfree.data.xy.*;
+import org.jfree.chart.axis.DateAxis;
+import org.jfree.chart.event.AxisChangeEvent;
+import org.jfree.chart.event.AxisChangeListener;
+import org.jfree.chart.plot.CombinedDomainXYPlot;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.RendererUtilities;
+import org.jfree.data.xy.OHLCDataset;
+import org.jfree.data.xy.XYDataset;
 
 import javax.swing.*;
-import java.awt.event.*;
-import java.util.*;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
+import java.util.List;
 
 /**
  * Scroll bar for a combined chart where the horizontal axis represents dates

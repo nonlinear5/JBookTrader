@@ -1,6 +1,8 @@
 package com.jbooktrader.platform.schedule;
 
-import java.util.*;
+import java.util.Calendar;
+import java.util.StringTokenizer;
+import java.util.TimeZone;
 
 /**
  * TradingSchedule defines the time period during which a strategy can trade.

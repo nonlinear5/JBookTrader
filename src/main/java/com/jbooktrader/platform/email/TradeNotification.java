@@ -1,11 +1,11 @@
 package com.jbooktrader.platform.email;
 
-import com.jbooktrader.platform.performance.*;
-import com.jbooktrader.platform.strategy.*;
-import com.jbooktrader.platform.util.format.*;
+import com.jbooktrader.platform.performance.Trade;
+import com.jbooktrader.platform.strategy.Strategy;
+import com.jbooktrader.platform.util.format.NumberFormatterFactory;
 
-import java.text.*;
-import java.util.*;
+import java.text.DecimalFormat;
+import java.util.Date;
 
 /**
  * @author Eugene Kononov

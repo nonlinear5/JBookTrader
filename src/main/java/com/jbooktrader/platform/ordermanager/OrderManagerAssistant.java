@@ -1,25 +1,34 @@
 package com.jbooktrader.platform.ordermanager;
 
-import com.ib.client.*;
-import com.jbooktrader.platform.email.*;
-import com.jbooktrader.platform.ibhandler.*;
-import com.jbooktrader.platform.indicator.*;
-import com.jbooktrader.platform.marketbook.*;
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.performance.*;
-import com.jbooktrader.platform.portfolio.*;
-import com.jbooktrader.platform.position.*;
-import com.jbooktrader.platform.preferences.*;
-import com.jbooktrader.platform.report.*;
-import com.jbooktrader.platform.startup.*;
-import com.jbooktrader.platform.strategy.*;
-import com.jbooktrader.platform.util.format.*;
-import com.jbooktrader.platform.util.ui.*;
+import com.ib.client.Contract;
+import com.ib.client.Types;
+import com.jbooktrader.platform.email.Notifier;
+import com.jbooktrader.platform.ibhandler.OrderExecution;
+import com.jbooktrader.platform.ibhandler.OrderHandler;
+import com.jbooktrader.platform.indicator.IndicatorManager;
+import com.jbooktrader.platform.marketbook.MarketBook;
+import com.jbooktrader.platform.marketbook.MarketSnapshot;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.model.Mode;
+import com.jbooktrader.platform.performance.PerformanceManager;
+import com.jbooktrader.platform.portfolio.PortfolioManager;
+import com.jbooktrader.platform.position.PositionManager;
+import com.jbooktrader.platform.preferences.PreferencesHolder;
+import com.jbooktrader.platform.report.EventReport;
+import com.jbooktrader.platform.startup.JBookTrader;
+import com.jbooktrader.platform.strategy.Strategy;
+import com.jbooktrader.platform.strategy.StrategyRunner;
+import com.jbooktrader.platform.util.format.NumberFormatterFactory;
+import com.jbooktrader.platform.util.ui.MessageDialog;
 
 import javax.swing.*;
-import java.text.*;
-import java.util.*;
-import java.util.concurrent.*;
+import java.text.DecimalFormat;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import static com.jbooktrader.platform.preferences.JBTPreferences.*;
 
@@ -80,10 +89,10 @@ public class OrderManagerAssistant {
             warning += "Running " + JBookTrader.APP_NAME + " in trading mode against a live" + lineSep;
             warning += "account may cause significant losses in your account. ";
             warning += "Are you sure you want to proceed?";
-            //int response = JOptionPane.showConfirmDialog(null, warning, JBookTrader.APP_NAME, JOptionPane.YES_NO_OPTION);
-            //if (response == JOptionPane.NO_OPTION) {
-            //    return;
-            //}
+            int response = JOptionPane.showConfirmDialog(null, warning, JBookTrader.APP_NAME, JOptionPane.YES_NO_OPTION);
+            if (response == JOptionPane.NO_OPTION) {
+                return;
+            }
         }
 
         PreferencesHolder prefs = PreferencesHolder.getInstance();
@@ -223,9 +232,9 @@ public class OrderManagerAssistant {
                 String msg;
                 if (portfolio.isEmpty()) {
                     String accountBalance = df0.format(dispatcher.getPortfolioManager().getAccountValue());
-                    msg = "End of trading day. Portfolio: " + portfolio.toString() + ". Account balance: " + accountBalance + ".";
+                    msg = "End of trading day. Portfolio: " + portfolio + ". Account balance: " + accountBalance + ".";
                 } else {
-                    msg = "End of trading day. TS should be flat, but account has open positions: " + portfolio.toString() + ".";
+                    msg = "End of trading day. TS should be flat, but account has open positions: " + portfolio + ".";
                 }
                 eventReport.report("StrategyRunner", msg);
                 Notifier.getInstance().submit(msg);

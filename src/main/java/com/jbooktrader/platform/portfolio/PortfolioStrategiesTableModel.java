@@ -1,12 +1,16 @@
 package com.jbooktrader.platform.portfolio;
 
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.performance.*;
-import com.jbooktrader.platform.strategy.*;
-import com.jbooktrader.platform.util.format.*;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.model.TableDataModel;
+import com.jbooktrader.platform.performance.PerformanceManager;
+import com.jbooktrader.platform.strategy.Strategy;
+import com.jbooktrader.platform.util.format.NumberFormatterFactory;
 
-import java.text.*;
-import java.util.*;
+import java.text.DecimalFormat;
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.List;
 
 /**
  * Strategy parameters table model.

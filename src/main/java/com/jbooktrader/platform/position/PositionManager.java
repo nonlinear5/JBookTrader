@@ -1,15 +1,18 @@
 package com.jbooktrader.platform.position;
 
-import com.jbooktrader.platform.ibhandler.*;
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.performance.*;
-import com.jbooktrader.platform.report.*;
-import com.jbooktrader.platform.schedule.*;
-import com.jbooktrader.platform.strategy.*;
-import com.jbooktrader.platform.util.format.*;
+import com.jbooktrader.platform.ibhandler.OrderExecution;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.model.Mode;
+import com.jbooktrader.platform.model.ModelListener;
+import com.jbooktrader.platform.performance.PerformanceManager;
+import com.jbooktrader.platform.report.EventReport;
+import com.jbooktrader.platform.schedule.HolidaySchedule;
+import com.jbooktrader.platform.strategy.Strategy;
+import com.jbooktrader.platform.util.format.NumberFormatterFactory;
 
-import java.text.*;
-import java.util.*;
+import java.text.DecimalFormat;
+import java.util.Deque;
+import java.util.LinkedList;
 
 /**
  * Position manager keeps track of current positions and executions.
@@ -120,12 +123,11 @@ public class PositionManager {
         }
 
         if (mode == Mode.ForwardTest || mode == Mode.Trade || mode == Mode.ForceClose) {
-            StringBuilder msg = new StringBuilder();
-            msg.append("Order ").append(orderExecution.getOrderID()).append(": Booked [");
-            msg.append("average price: ").append(df6.format(avgFillPrice)).append(", ");
-            msg.append("strategy position: ").append(getCurrentPosition());
-            msg.append("]");
-            eventReport.report(strategy.getName(), msg.toString());
+            String msg = "Order " + orderExecution.getOrderID() + ": Booked [" +
+                    "average price: " + df6.format(avgFillPrice) + ", " +
+                    "strategy position: " + getCurrentPosition() +
+                    "]";
+            eventReport.report(strategy.getName(), msg);
             Dispatcher.getInstance().fireModelChanged(ModelListener.Event.SystemStatusUpdate);
         }
     }

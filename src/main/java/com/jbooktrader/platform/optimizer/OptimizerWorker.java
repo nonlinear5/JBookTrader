@@ -1,15 +1,17 @@
 package com.jbooktrader.platform.optimizer;
 
-import com.jbooktrader.platform.indicator.*;
-import com.jbooktrader.platform.marketbook.*;
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.ordermanager.*;
-import com.jbooktrader.platform.performance.*;
-import com.jbooktrader.platform.schedule.*;
-import com.jbooktrader.platform.strategy.*;
+import com.jbooktrader.platform.indicator.IndicatorManager;
+import com.jbooktrader.platform.marketbook.MarketBook;
+import com.jbooktrader.platform.marketbook.MarketSnapshot;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.ordermanager.OrderManagerAssistant;
+import com.jbooktrader.platform.performance.PerformanceManager;
+import com.jbooktrader.platform.schedule.TradingSchedule;
+import com.jbooktrader.platform.strategy.Strategy;
 
-import java.util.*;
-import java.util.concurrent.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Callable;
 
 /**
  * @author Eugene Kononov

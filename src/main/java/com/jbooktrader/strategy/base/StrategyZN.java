@@ -1,11 +1,12 @@
 package com.jbooktrader.strategy.base;
 
-import com.ib.client.*;
-import com.jbooktrader.platform.commission.*;
-import com.jbooktrader.platform.optimizer.*;
-import com.jbooktrader.platform.schedule.*;
-import com.jbooktrader.platform.strategy.*;
-import com.jbooktrader.platform.util.contract.*;
+import com.ib.client.Contract;
+import com.jbooktrader.platform.commission.Commission;
+import com.jbooktrader.platform.commission.CommissionFactory;
+import com.jbooktrader.platform.optimizer.StrategyParams;
+import com.jbooktrader.platform.schedule.TradingSchedule;
+import com.jbooktrader.platform.strategy.Strategy;
+import com.jbooktrader.platform.util.contract.ContractFactory;
 
 /**
  * @author Eugene Kononov

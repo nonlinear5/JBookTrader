@@ -1,15 +1,17 @@
 package com.jbooktrader.platform.strategy;
 
-import com.jbooktrader.platform.dialog.*;
-import com.jbooktrader.platform.indicator.*;
-import com.jbooktrader.platform.optimizer.*;
-import com.jbooktrader.platform.performance.*;
-import com.jbooktrader.platform.util.format.*;
-import com.jbooktrader.platform.util.ui.*;
+import com.jbooktrader.platform.dialog.JBTDialog;
+import com.jbooktrader.platform.indicator.Indicator;
+import com.jbooktrader.platform.indicator.IndicatorManager;
+import com.jbooktrader.platform.optimizer.StrategyParam;
+import com.jbooktrader.platform.optimizer.StrategyParams;
+import com.jbooktrader.platform.performance.PerformanceManager;
+import com.jbooktrader.platform.util.format.NumberFormatterFactory;
+import com.jbooktrader.platform.util.ui.SpringUtilities;
 
 import javax.swing.*;
 import java.awt.*;
-import java.text.*;
+import java.text.NumberFormat;
 
 /**
  * @author Eugene Kononov

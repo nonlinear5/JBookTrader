@@ -1,8 +1,8 @@
 package com.jbooktrader.platform.performance;
 
-import com.jbooktrader.platform.chart.*;
+import com.jbooktrader.platform.chart.TimedValue;
 
-import java.util.*;
+import java.util.List;
 
 /**
  * @author Eugene Kononov

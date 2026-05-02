@@ -1,10 +1,15 @@
 package com.jbooktrader.platform.backtest;
 
-import com.jbooktrader.platform.marketbook.*;
+import com.jbooktrader.platform.marketbook.MarketSnapshot;
+import com.jbooktrader.platform.marketbook.MarketSnapshotFilter;
 
-import java.io.*;
-import java.nio.file.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Reads and validates a data file containing historical market depth records.
@@ -36,7 +41,7 @@ public class BackTestFileReader {
     public List<MarketSnapshot> load(ProgressListener progressListener) {
         String key = fileName + "," + fileSize;
         if (filter != null) {
-            key += ", " + filter.toString();
+            key += ", " + filter;
         }
         if (key.equals(cacheKey) && !snapshots.isEmpty()) {
             return snapshots;

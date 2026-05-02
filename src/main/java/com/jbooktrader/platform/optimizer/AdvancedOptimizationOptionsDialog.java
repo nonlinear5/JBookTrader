@@ -1,14 +1,16 @@
 package com.jbooktrader.platform.optimizer;
 
-import com.jbooktrader.platform.dialog.*;
-import com.jbooktrader.platform.preferences.*;
-import com.jbooktrader.platform.util.ui.*;
+import com.jbooktrader.platform.dialog.JBTDialog;
+import com.jbooktrader.platform.preferences.JBTPreferences;
+import com.jbooktrader.platform.preferences.PreferencesHolder;
+import com.jbooktrader.platform.util.ui.SpringUtilities;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
+import java.util.Properties;
 
-import static com.jbooktrader.platform.preferences.JBTPreferences.*;
+import static com.jbooktrader.platform.preferences.JBTPreferences.DivideAndConquerCoverage;
+import static com.jbooktrader.platform.preferences.JBTPreferences.StrategiesPerProcessor;
 
 /**
  * @author Eugene Kononov

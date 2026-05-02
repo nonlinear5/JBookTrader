@@ -1,6 +1,6 @@
 package com.jbooktrader.platform.marketdepth;
 
-import java.util.*;
+import java.util.LinkedList;
 
 /**
  * @author Eugene Kononov

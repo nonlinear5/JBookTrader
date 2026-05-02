@@ -1,16 +1,19 @@
 package com.jbooktrader.platform.strategy;
 
-import com.ib.client.*;
-import com.jbooktrader.platform.commission.*;
-import com.jbooktrader.platform.indicator.*;
-import com.jbooktrader.platform.marketbook.*;
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.model.ModelListener.*;
-import com.jbooktrader.platform.optimizer.*;
-import com.jbooktrader.platform.ordermanager.*;
-import com.jbooktrader.platform.performance.*;
-import com.jbooktrader.platform.position.*;
-import com.jbooktrader.platform.schedule.*;
+import com.ib.client.Contract;
+import com.jbooktrader.platform.commission.Commission;
+import com.jbooktrader.platform.indicator.Indicator;
+import com.jbooktrader.platform.indicator.IndicatorManager;
+import com.jbooktrader.platform.marketbook.MarketBook;
+import com.jbooktrader.platform.marketbook.MarketSnapshot;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.model.Mode;
+import com.jbooktrader.platform.model.ModelListener.Event;
+import com.jbooktrader.platform.optimizer.StrategyParams;
+import com.jbooktrader.platform.ordermanager.OrderManagerAssistant;
+import com.jbooktrader.platform.performance.PerformanceManager;
+import com.jbooktrader.platform.position.PositionManager;
+import com.jbooktrader.platform.schedule.TradingSchedule;
 
 /**
  * Base class for all classes that implement trading strategies.
@@ -183,7 +186,6 @@ public abstract class Strategy implements Comparable<Strategy> {
     void process() {
         if (!marketBook.isEmpty()) {
             boolean hasValidIndicators = indicatorManager.updateIndicators();
-            hasValidIndicators = true;
             MarketSnapshot marketSnapshot = marketBook.getSnapshot();
             long instant = marketSnapshot.getTime();
             boolean isInSchedule = tradingSchedule.contains(instant);

@@ -1,25 +1,34 @@
 package com.jbooktrader.platform.chart;
 
-import com.jbooktrader.platform.indicator.*;
-import com.jbooktrader.platform.position.*;
-import com.jbooktrader.platform.preferences.*;
-import com.jbooktrader.platform.strategy.*;
-import com.jbooktrader.platform.util.ui.*;
-import org.jfree.chart.*;
-import org.jfree.chart.axis.*;
-import org.jfree.chart.plot.*;
-import org.jfree.chart.renderer.xy.*;
-import org.jfree.data.xy.*;
-import org.jfree.ui.*;
+import com.jbooktrader.platform.indicator.Indicator;
+import com.jbooktrader.platform.position.Position;
+import com.jbooktrader.platform.preferences.PreferencesHolder;
+import com.jbooktrader.platform.strategy.Strategy;
+import com.jbooktrader.platform.util.ui.SpringUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.DateAxis;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.SegmentedTimeline;
+import org.jfree.chart.plot.CombinedDomainXYPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.CandlestickRenderer;
+import org.jfree.data.xy.OHLCDataset;
+import org.jfree.ui.RefineryUtilities;
 
 import javax.swing.*;
-import javax.swing.border.*;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.*;
+import java.util.TimeZone;
 
-import static com.jbooktrader.platform.preferences.JBTPreferences.*;
+import static com.jbooktrader.platform.preferences.JBTPreferences.PerformanceChartHeight;
+import static com.jbooktrader.platform.preferences.JBTPreferences.PerformanceChartWidth;
 
 
 /**

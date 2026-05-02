@@ -1,8 +1,11 @@
 package com.jbooktrader.platform.model;
 
 import javax.swing.*;
-import javax.swing.table.*;
-import java.util.*;
+import javax.swing.table.AbstractTableModel;
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Eugene Kononov

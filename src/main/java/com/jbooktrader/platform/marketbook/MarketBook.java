@@ -1,6 +1,6 @@
 package com.jbooktrader.platform.marketbook;
 
-import com.jbooktrader.platform.model.*;
+import com.jbooktrader.platform.model.Dispatcher;
 
 /**
  * Holds history of market snapshots for a trading instrument.
@@ -32,10 +32,6 @@ public class MarketBook {
         return marketSnapshot;
     }
 
-    public boolean isLocked() {
-        return isLocked;
-    }
-
     public void setSnapshot(MarketSnapshot marketSnapshot) {
         double midPrice = (marketSnapshot.getBid() + marketSnapshot.getAsk()) / 2d;
         long time = marketSnapshot.getTime();
@@ -59,5 +55,9 @@ public class MarketBook {
         }
         this.marketSnapshot = marketSnapshot;
         contract = marketSnapshot.getContract();
+    }
+
+    public boolean isLocked() {
+        return isLocked;
     }
 }

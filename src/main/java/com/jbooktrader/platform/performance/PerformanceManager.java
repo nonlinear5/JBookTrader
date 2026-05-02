@@ -1,14 +1,19 @@
 package com.jbooktrader.platform.performance;
 
 
-import com.jbooktrader.platform.chart.*;
-import com.jbooktrader.platform.commission.*;
-import com.jbooktrader.platform.email.*;
-import com.jbooktrader.platform.indicator.*;
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.strategy.*;
+import com.jbooktrader.platform.chart.BarSize;
+import com.jbooktrader.platform.chart.PerformanceChartData;
+import com.jbooktrader.platform.chart.TimedValue;
+import com.jbooktrader.platform.commission.Commission;
+import com.jbooktrader.platform.email.Notifier;
+import com.jbooktrader.platform.email.TradeNotification;
+import com.jbooktrader.platform.indicator.Indicator;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.model.Mode;
+import com.jbooktrader.platform.strategy.Strategy;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Performance manager evaluates trading strategy performance based on statistics

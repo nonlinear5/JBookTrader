@@ -1,23 +1,30 @@
 package com.jbooktrader.platform.portfolio;
 
 
-import com.jbooktrader.platform.backtest.*;
-import com.jbooktrader.platform.dialog.*;
-import com.jbooktrader.platform.marketbook.*;
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.preferences.*;
-import com.jbooktrader.platform.strategy.*;
-import com.jbooktrader.platform.util.ui.*;
-import com.toedter.calendar.*;
+import com.jbooktrader.platform.backtest.ProgressListener;
+import com.jbooktrader.platform.dialog.JBTDialog;
+import com.jbooktrader.platform.marketbook.MarketSnapshotFilter;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.preferences.PreferencesHolder;
+import com.jbooktrader.platform.strategy.Strategy;
+import com.jbooktrader.platform.util.ui.MessageDialog;
+import com.jbooktrader.platform.util.ui.SpringUtilities;
+import com.jbooktrader.platform.util.ui.TitledSeparator;
+import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JTextFieldDateEditor;
 
 import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.table.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.TableColumnModelEvent;
+import javax.swing.event.TableColumnModelListener;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.Date;
 import java.util.List;
-import java.util.*;
-import java.util.stream.*;
+import java.util.stream.Collectors;
 
 import static com.jbooktrader.platform.preferences.JBTPreferences.*;
 

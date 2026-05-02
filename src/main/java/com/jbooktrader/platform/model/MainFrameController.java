@@ -1,23 +1,28 @@
 package com.jbooktrader.platform.model;
 
-import com.jbooktrader.platform.backtest.*;
-import com.jbooktrader.platform.chart.*;
-import com.jbooktrader.platform.dialog.*;
-import com.jbooktrader.platform.optimizer.*;
-import com.jbooktrader.platform.ordermanager.*;
-import com.jbooktrader.platform.portfolio.*;
-import com.jbooktrader.platform.preferences.*;
-import com.jbooktrader.platform.startup.*;
-import com.jbooktrader.platform.strategy.*;
-import com.jbooktrader.platform.util.ui.*;
+import com.jbooktrader.platform.backtest.BackTestDialog;
+import com.jbooktrader.platform.chart.PerformanceChart;
+import com.jbooktrader.platform.chart.PerformanceChartData;
+import com.jbooktrader.platform.dialog.AboutDialog;
+import com.jbooktrader.platform.dialog.MainFrameDialog;
+import com.jbooktrader.platform.optimizer.OptimizerDialog;
+import com.jbooktrader.platform.ordermanager.OrderManagerAssistant;
+import com.jbooktrader.platform.portfolio.PortfolioBackTestDialog;
+import com.jbooktrader.platform.preferences.PreferencesDialog;
+import com.jbooktrader.platform.preferences.PreferencesHolder;
+import com.jbooktrader.platform.startup.JBookTrader;
+import com.jbooktrader.platform.strategy.Strategy;
+import com.jbooktrader.platform.strategy.StrategyInformationDialog;
+import com.jbooktrader.platform.util.ui.MessageDialog;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.net.*;
+import java.net.URI;
 import java.util.List;
 
-import static com.jbooktrader.platform.preferences.JBTPreferences.*;
+import static com.jbooktrader.platform.preferences.JBTPreferences.MainWindowHeight;
+import static com.jbooktrader.platform.preferences.JBTPreferences.MainWindowWidth;
 
 /**
  * Acts as a controller in the Model-View-Controller pattern

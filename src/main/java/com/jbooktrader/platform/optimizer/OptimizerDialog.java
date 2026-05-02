@@ -1,24 +1,30 @@
 package com.jbooktrader.platform.optimizer;
 
 
-import com.jbooktrader.platform.backtest.*;
-import com.jbooktrader.platform.chart.*;
-import com.jbooktrader.platform.dialog.*;
-import com.jbooktrader.platform.marketbook.*;
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.performance.*;
-import com.jbooktrader.platform.preferences.*;
-import com.jbooktrader.platform.strategy.*;
-import com.jbooktrader.platform.util.ui.*;
-import com.toedter.calendar.*;
+import com.jbooktrader.platform.backtest.ProgressListener;
+import com.jbooktrader.platform.chart.OptimizationMap;
+import com.jbooktrader.platform.dialog.JBTDialog;
+import com.jbooktrader.platform.marketbook.MarketSnapshotFilter;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.performance.KernelEvaluator;
+import com.jbooktrader.platform.preferences.PreferencesHolder;
+import com.jbooktrader.platform.strategy.Strategy;
+import com.jbooktrader.platform.util.ui.MessageDialog;
+import com.jbooktrader.platform.util.ui.SpringUtilities;
+import com.jbooktrader.platform.util.ui.TitledSeparator;
+import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JTextFieldDateEditor;
 
 import javax.swing.*;
-import javax.swing.table.*;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.util.Date;
 import java.util.List;
-import java.util.*;
 
 import static com.jbooktrader.platform.optimizer.PerformanceMetric.*;
 import static com.jbooktrader.platform.preferences.JBTPreferences.*;

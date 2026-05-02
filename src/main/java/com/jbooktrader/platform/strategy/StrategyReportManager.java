@@ -1,14 +1,18 @@
 package com.jbooktrader.platform.strategy;
 
-import com.jbooktrader.platform.model.*;
-import com.jbooktrader.platform.performance.*;
-import com.jbooktrader.platform.position.*;
-import com.jbooktrader.platform.report.*;
-import com.jbooktrader.platform.util.format.*;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.model.Mode;
+import com.jbooktrader.platform.performance.PerformanceManager;
+import com.jbooktrader.platform.position.PositionManager;
+import com.jbooktrader.platform.report.StrategyReport;
+import com.jbooktrader.platform.util.format.NumberFormatterFactory;
 
-import java.io.*;
-import java.text.*;
-import java.util.*;
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TimeZone;
 
 /**
  * Strategy report manager

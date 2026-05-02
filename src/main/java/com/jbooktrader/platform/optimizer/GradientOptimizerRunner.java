@@ -1,9 +1,12 @@
 package com.jbooktrader.platform.optimizer;
 
-import com.jbooktrader.platform.preferences.*;
-import com.jbooktrader.platform.strategy.*;
+import com.jbooktrader.platform.preferences.JBTPreferences;
+import com.jbooktrader.platform.preferences.PreferencesHolder;
+import com.jbooktrader.platform.strategy.Strategy;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Set;
 
 /**
  * @author Eugene Kononov
@@ -50,11 +53,8 @@ public class GradientOptimizerRunner extends OptimizerRunner {
             }
 
             double range = max - min;
-            //double beta = 2 + passNumber;
             double beta = 2;
-            //if (beta <= 2) {
-            //    beta =2;
-           // }
+
 
             for (OptimizationResult optimizationResult : optimizationResults) {
 
@@ -147,7 +147,7 @@ public class GradientOptimizerRunner extends OptimizerRunner {
             System.out.print("pass #" + String.format("%d", passNumber) + ": ");
             System.out.print("centroid: ");
             for (double d : centroid) {
-                System.out.print(String.format("%.2f", d));
+                System.out.printf("%.2f", d);
                 System.out.print(", ");
             }
 

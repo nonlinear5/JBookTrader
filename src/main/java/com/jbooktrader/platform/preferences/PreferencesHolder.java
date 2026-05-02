@@ -1,8 +1,8 @@
 package com.jbooktrader.platform.preferences;
 
-import com.jbooktrader.platform.startup.*;
+import com.jbooktrader.platform.startup.JBookTrader;
 
-import java.util.prefs.*;
+import java.util.prefs.Preferences;
 
 /**
  * @author Eugene Kononov

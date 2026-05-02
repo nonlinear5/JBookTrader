@@ -1,6 +1,6 @@
 package com.jbooktrader.platform.util.contract;
 
-import com.ib.client.*;
+import com.ib.client.Contract;
 
 /**
  * Provides convenience methods to create futures contracts

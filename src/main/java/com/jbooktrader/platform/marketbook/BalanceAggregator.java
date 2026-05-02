@@ -1,6 +1,6 @@
 package com.jbooktrader.platform.marketbook;
 
-import com.jbooktrader.platform.marketdepth.*;
+import com.jbooktrader.platform.marketdepth.MarketDepthModel;
 
 /**
  * @author Eugene Kononov

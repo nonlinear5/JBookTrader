@@ -1,10 +1,10 @@
 package com.jbooktrader.platform.chart;
 
-import com.jbooktrader.platform.strategy.*;
-import org.jfree.chart.axis.*;
-import org.jfree.data.xy.*;
+import com.jbooktrader.platform.strategy.Strategy;
+import org.jfree.chart.axis.SegmentedTimeline;
+import org.jfree.data.xy.OHLCDataItem;
 
-import java.util.*;
+import java.util.List;
 
 /**
  * @author Eugene Kononov

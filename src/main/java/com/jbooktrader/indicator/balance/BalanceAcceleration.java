@@ -1,6 +1,6 @@
 package com.jbooktrader.indicator.balance;
 
-import com.jbooktrader.platform.indicator.*;
+import com.jbooktrader.platform.indicator.Indicator;
 
 /**
  * Balance derivatives
