@@ -113,8 +113,8 @@ public class PortfolioBackTestDialog extends JBTDialog implements ProgressListen
                 prefs.set(PotfolioOptimizerWindowHeight, getSize().height);
                 prefs.set(DateRangeStart, fromDateEditor.getText());
                 prefs.set(DateRangeEnd, toDateEditor.getText());
-                prefs.set(UseDateRange, (useDateRangeCheckBox.isSelected() ? "true" : "false"));
-                prefs.set(ShowLegend, (showLegendCheck.isSelected() ? "true" : "false"));
+                prefs.set(UseDateRange, (Boolean.toString(useDateRangeCheckBox.isSelected())));
+                prefs.set(ShowLegend, (Boolean.toString(showLegendCheck.isSelected())));
                 prefs.set(UpperChartWeight, upperChartWeightCombo.getSelectedItem());
                 prefs.set(ChartYaxisLocation, chartYaxisLocationCombo.getSelectedItem());
 

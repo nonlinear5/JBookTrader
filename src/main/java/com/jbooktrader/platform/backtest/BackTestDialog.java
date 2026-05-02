@@ -87,7 +87,7 @@ public class BackTestDialog extends JBTDialog implements ProgressListener {
                 prefs.set(DataFileName, fileNameText.getText());
                 prefs.set(DateRangeStart, fromDateEditor.getText());
                 prefs.set(DateRangeEnd, toDateEditor.getText());
-                prefs.set(UseDateRange, (useDateRangeCheckBox.isSelected() ? "true" : "false"));
+                prefs.set(UseDateRange, (Boolean.toString(useDateRangeCheckBox.isSelected())));
                 prefs.set(PerformanceChartBarSize, barSizeCombo.getSelectedItem());
                 String historicalFileName = fileNameText.getText();
                 File file = new File(historicalFileName);
@@ -129,7 +129,7 @@ public class BackTestDialog extends JBTDialog implements ProgressListener {
             fileChooser.setDialogTitle("Select Historical Data File");
 
             String filename = getFileName();
-            if (filename.length() != 0) {
+            if (!filename.isEmpty()) {
                 fileChooser.setSelectedFile(new File(filename));
             }
 
