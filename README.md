@@ -44,7 +44,7 @@ jbooktrader.jar
 To start the application:
 
 ```sh
-java -jar target/jbooktrader.jar
+java -jar target/JBookTrader.jar
 ```
 
 ## Support
