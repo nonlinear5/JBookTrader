@@ -9,6 +9,7 @@
 /.idea
 .idea
 *.iml
+build.xml
 
 # run artifacts
 /reports
