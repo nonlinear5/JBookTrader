@@ -18,15 +18,15 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * This class is a wrapper around the Apache-Commons NTPUPDClient, which implements
  * the Network Time Protocol (RFC-1305) specification:
- * http://www.faqs.org/ftp/rfc/rfc1305.pdf
+ * <a href="http://www.faqs.org/ftp/rfc/rfc1305.pdf">...</a>
  * <p>
- * This class does not synchronize the local clock, but merely uses the pool of
+ * This class does not synchronize the local machine clock, but merely uses the pool of
  * NTP time servers to calculate the offset between the NTP server clock and the local clock.
  *
  * @author Eugene Kononov
  */
 public class NTPClock {
-    private static final int timeoutMillis = 1000;
+    //private static final int timeoutMillis = 1000;
     private static final int minimumNumberOfServers = 3;
     private static final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
@@ -97,9 +97,9 @@ public class NTPClock {
 
     private void updateOffset() {
         NTPUDPClient ntpClient = new NTPUDPClient();
-        ntpClient.setDefaultTimeout(timeoutMillis);
 
-        try {
+        try (ntpClient) {
+            //ntpClient.setDefaultTimeout(timeoutMillis); // this is deprecated, need to come back to this to fix it
             ntpClient.open();
             List<Long> offsets = new ArrayList<>();
             List<String> unresponsiveNtpServers = new ArrayList<>();
@@ -126,8 +126,6 @@ public class NTPClock {
             }
         } catch (Exception e) {
             eventReport.report("NTP clock", "Could not update NTP Clock: " + e.getMessage());
-        } finally {
-            ntpClient.close();
         }
     }
 
