@@ -60,3 +60,4 @@ However, it's out of date, so I am working on updating it.
 ## Support
 For support, questions, and suggestions, please join the [JBookTrader Google Group
 ](https://groups.google.com/g/jbooktrader)
+
