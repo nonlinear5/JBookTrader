@@ -52,6 +52,11 @@ To start the application:
 java -jar target/JBookTrader.jar
 ```
 
+
+## User Manual
+The user manual is available: [`/docs/JBookTrader.UserGuide.docx`](docs/JBookTrader.UserGuide.docx).
+However, it's out of date, so I am working on updating it. 
+
 ## Support
-For support and questions, please join the [JBookTrader Google Group
+For support, questions, and suggestions, please join the [JBookTrader Google Group
 ](https://groups.google.com/g/jbooktrader)
