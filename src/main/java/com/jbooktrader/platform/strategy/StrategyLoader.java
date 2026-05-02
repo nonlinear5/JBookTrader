@@ -57,12 +57,14 @@ public class StrategyLoader {
                     String entryPath = entry.getName();
                     String prefix = "com/jbooktrader/strategy/";
                     if (entryPath.contains(prefix) && entryPath.endsWith(".class")) {
-                        String className = entryPath.substring(prefix.length(), entryPath.lastIndexOf(".class"));
+                        //String className = entryPath.substring(prefix.length(), entryPath.lastIndexOf(".class"));
+                        String className = entryPath;
                         if (!className.contains("base/")) {  // support nested packages not named base
                             if (className.contains("/")) {
                                 className = className.replaceAll("/", ".");
                             }
-                            //classNames.add(className);
+                            int xx = 0;
+                            classNames.add(className);
                         }
                     }
                 }
@@ -80,7 +82,11 @@ public class StrategyLoader {
         try {
             List<String> strategyNames = getClassNames();
             for (String strategyName : strategyNames) {
-                String sn = strategyName.substring(0, strategyName.lastIndexOf(".class"));
+                int index = strategyName.lastIndexOf(".class");
+                String sn = strategyName;
+                if (index != -1) {
+                    sn = strategyName.substring(0, strategyName.lastIndexOf(".class"));
+                }
                 sn = sn.replaceAll("/", ".");
                 Class<?> clazz = Class.forName(sn);
                 if (!Modifier.isAbstract(clazz.getModifiers())) {
