@@ -1,6 +1,7 @@
 package com.jbooktrader.platform.ibhandler;
 
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Eugene Kononov
@@ -15,7 +16,7 @@ class OrderIdFactory {
 
     boolean acquireNextOrderID() {
         try {
-            return orderIdSemaphore.tryAcquire();
+            return orderIdSemaphore.tryAcquire(5, TimeUnit.SECONDS);
         } catch (Exception e) {
             return false;
         }
