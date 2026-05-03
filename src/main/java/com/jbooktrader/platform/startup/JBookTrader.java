@@ -62,7 +62,7 @@ public class JBookTrader {
             if (defaults.get("Table.alternateRowColor") == null) {
                 defaults.put("Table.alternateRowColor", new Color(254, 254, 254));
             }
-            //UIManager.setLookAndFeel(new NimbusLookAndFeel());
+
             if (!lockInstance()) {
                 MessageDialog.showError(APP_NAME + " is already running.");
                 return;

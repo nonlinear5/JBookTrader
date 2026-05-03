@@ -7,6 +7,7 @@ import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -145,7 +146,7 @@ class TraderAssistant {
 
     private boolean acquireAccountInfo() {
         try {
-            return accountSemaphore.tryAcquire();
+            return accountSemaphore.tryAcquire(5, TimeUnit.SECONDS);
         } catch (Exception e) {
             return false;
         }
