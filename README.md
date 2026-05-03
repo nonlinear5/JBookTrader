@@ -46,12 +46,23 @@ JBookTrader.jar
 
 ## Run
 
-To start the application:
+To start JBookTrader, run the following command:
 
 ```sh
 java -jar target/JBookTrader.jar
 ```
 
+If you run JBookTrader to optimize trading strategies, you may want to allocate more memory to the JVM. 
+
+```sh
+java -Xms10g -Xms10g -jar target/JBookTrader.jar
+```
+
+When JBookTrader starts, it may print some warnings to conslole about using the custom look and feel. If that bothers you, you can suppress those warnings by adding the following JVM option:
+
+```sh
+java --enable-native-access=ALL-UNNAMED -jar target/JBookTrader.jar
+```
 
 ## User Manual
 The user manual is available: [`/docs/JBookTrader.UserGuide.docx`](docs/JBookTrader.UserGuide.docx).
