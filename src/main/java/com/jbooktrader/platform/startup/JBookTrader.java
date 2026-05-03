@@ -1,6 +1,10 @@
 package com.jbooktrader.platform.startup;
 
 
+import com.formdev.flatlaf.IntelliJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatGrayIJTheme;
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import com.jbooktrader.platform.model.Dispatcher;
 import com.jbooktrader.platform.model.MainFrameController;
 import com.jbooktrader.platform.util.ui.MessageDialog;
@@ -41,8 +45,6 @@ public class JBookTrader {
     private JBookTrader() {
         try {
             Dispatcher.getInstance().init();
-            UIManager.setLookAndFeel(new NimbusLookAndFeel());
-            UIManager.getLookAndFeelDefaults().put("nimbusOrange", (new Color(119, 136, 153)));
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -55,6 +57,12 @@ public class JBookTrader {
      */
     public static void main(String[] args) {
         try {
+            FlatGrayIJTheme.setup();
+            UIDefaults defaults = UIManager.getLookAndFeelDefaults();
+            if (defaults.get("Table.alternateRowColor") == null) {
+                defaults.put("Table.alternateRowColor", new Color(254, 254, 254));
+            }
+            //UIManager.setLookAndFeel(new NimbusLookAndFeel());
             if (!lockInstance()) {
                 MessageDialog.showError(APP_NAME + " is already running.");
                 return;

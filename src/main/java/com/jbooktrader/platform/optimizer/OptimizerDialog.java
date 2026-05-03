@@ -16,6 +16,7 @@ import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableRowSorter;
@@ -317,9 +318,13 @@ public class OptimizerDialog extends JBTDialog implements ProgressListener {
         paramTableModel = new ParamTableModel();
         JTable paramTable = new JTable(paramTableModel);
         paramTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) paramTable.getDefaultRenderer(String.class);
+        renderer.setHorizontalAlignment(SwingConstants.LEFT);
+        ((JLabel) paramTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.LEFT);
 
         paramTableColumnModel = paramTable.getColumnModel();
         stepColumn = paramTableColumnModel.getColumn(3);
+
 
         paramScrollPane.getViewport().add(paramTable);
         paramScrollPane.setPreferredSize(new Dimension(0, 135));
@@ -404,6 +409,9 @@ public class OptimizerDialog extends JBTDialog implements ProgressListener {
         resultsTable = new JTable();
         resultsTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         resultsTable.setShowGrid(false);
+        DefaultTableCellRenderer resultsTableRenderer = (DefaultTableCellRenderer) resultsTable.getDefaultRenderer(String.class);
+        resultsTableRenderer.setHorizontalAlignment(SwingConstants.LEFT);
+        ((JLabel) resultsTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.LEFT);
 
         resultsScrollPane.getViewport().add(resultsTable);
 

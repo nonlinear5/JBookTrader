@@ -5,6 +5,8 @@ import com.jbooktrader.platform.startup.JBookTrader;
 import com.jbooktrader.platform.util.ui.SpringUtilities;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.util.Enumeration;
 import java.util.Properties;
@@ -77,6 +79,10 @@ public class AboutDialog extends JBTDialog {
         TableDataModel aboutModel = new AboutTableModel();
         JTable aboutTable = new JTable(aboutModel);
         systemInfoScrollPane.getViewport().add(aboutTable);
+        DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) aboutTable.getDefaultRenderer(String.class);
+        renderer.setHorizontalAlignment(SwingConstants.LEFT);
+        ((JLabel) aboutTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.LEFT);
+
 
 
         getContentPane().setPreferredSize(new Dimension(650, 400));

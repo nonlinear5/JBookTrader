@@ -14,6 +14,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -290,10 +291,13 @@ public class MainFrameDialog extends JFrame implements ModelListener {
         strategyTableModel = new StrategyTableModel();
         strategyTable = new JTable(strategyTableModel);
         strategyTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        ((JLabel) strategyTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.LEFT);
+
+
         strategyTable.setShowGrid(false);
 
         DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) strategyTable.getDefaultRenderer(String.class);
-        renderer.setHorizontalAlignment(SwingConstants.RIGHT);
+        renderer.setHorizontalAlignment(SwingConstants.LEFT);
 
         strategyTableScrollPane.getViewport().add(strategyTable);
 

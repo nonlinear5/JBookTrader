@@ -18,6 +18,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.TableColumnModelEvent;
 import javax.swing.event.TableColumnModelListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -211,11 +212,17 @@ public class PortfolioBackTestDialog extends JBTDialog implements ProgressListen
 
         portfolioStrategiesTableModel = new PortfolioStrategiesTableModel(true);
         final JTable portfolioStrategiesTable = new JTable(portfolioStrategiesTableModel);
+        DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) portfolioStrategiesTable.getDefaultRenderer(String.class);
+        renderer.setHorizontalAlignment(SwingConstants.LEFT);
         TableColumnModel columnModel = portfolioStrategiesTable.getColumnModel();
         columnModel.getColumn(1).setPreferredWidth(175);
 
 
         ((JComponent) portfolioStrategiesTable.getDefaultRenderer(Boolean.class)).setOpaque(true);
+        DefaultTableCellRenderer tableRenderer = (DefaultTableCellRenderer) portfolioStrategiesTable.getDefaultRenderer(String.class);
+        tableRenderer.setHorizontalAlignment(SwingConstants.LEFT);
+        ((JLabel) portfolioStrategiesTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.LEFT);
+
 
         portfolioStrategiesTable.setRowSelectionAllowed(false);
         portfolioStrategiesTable.setColumnSelectionAllowed(false);
@@ -223,6 +230,9 @@ public class PortfolioBackTestDialog extends JBTDialog implements ProgressListen
 
         portfolioSummaryTableModel = new PortfolioSummaryTableModel(false);
         final JTable footer = new JTable(portfolioSummaryTableModel);
+        DefaultTableCellRenderer footerTableRenderer = (DefaultTableCellRenderer) footer.getDefaultRenderer(String.class);
+        footerTableRenderer.setHorizontalAlignment(SwingConstants.LEFT);
+        ((JLabel) footer.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.LEFT);
         footer.setRowSelectionAllowed(false);
         paramScrollPane.getViewport().add(portfolioStrategiesTable);
         paramScrollPane.setPreferredSize(new Dimension(0, 157));
