@@ -320,29 +320,17 @@ public class MainFrameDialog extends JFrame implements ModelListener {
     }
 
     private void setMacDockIcon() {
+        boolean onMac = System.getProperty("os.name").toLowerCase().startsWith("mac os x");
+        if (!onMac) {
+            return;
+        }
         try {
-            // Load your icon image (use a high-res PNG or ICNS)
             Image appIcon = Toolkit.getDefaultToolkit().getImage(getImageURL("JBookTraderMac.png"));
-
-            // Get the taskbar instance and set the image
             Taskbar taskbar = Taskbar.getTaskbar();
             taskbar.setIconImage(appIcon);
-
-            // Set the dock icon image on macOS using reflection (Apple EAWT)
-            try {
-                Class<?> applicationClass = Class.forName("com.apple.eawt.Application");
-                Object application = applicationClass.getMethod("getApplication").invoke(null);
-                applicationClass.getMethod("setDockIconImage", Image.class).invoke(application, appIcon);
-            } catch (Exception e) {
-                // Apple EAWT not available or failed - continue without it
-            }
-
-        } catch (final UnsupportedOperationException e) {
-            System.out.println("The taskbar is not supported on this platform.");
-        } catch (final SecurityException e) {
-            System.out.println("There was a security exception while setting the taskbar icon.");
+        } catch (Exception e) {
+            dispatcher.getEventReport().report(e);
+            // if the icon can't be placed on the taskbar, continue normally
         }
     }
-
-
 }
