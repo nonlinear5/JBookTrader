@@ -264,9 +264,9 @@ public class MainFrameController {
 
         mainViewDialog.releaseNotesAction(e -> openURL("http://code.google.com/p/jbooktrader/wiki/ReleaseNotes"));
 
-        mainViewDialog.userManualAction(e -> openURL("http://docs.google.com/View?id=dfzgvqp4_10gb63b8hg"));
+        mainViewDialog.userManualAction(e -> openURL("https://docs.google.com/document/d/1uNQzIbuNyNZXxuv9NFCZRgx0nYeEfwuG1ZRfHBnFfZk/edit?usp=sharing"));
 
-        mainViewDialog.projectHomeAction(e -> openURL("http://code.google.com/p/jbooktrader/"));
+        mainViewDialog.projectHomeAction(e -> openURL("https://github.com/nonlinear5/JBookTrader"));
 
         mainViewDialog.exitAction(e -> exit());
 
