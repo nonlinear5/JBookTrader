@@ -14,7 +14,6 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -303,6 +302,7 @@ public class MainFrameDialog extends JFrame implements ModelListener {
 
         Image appIcon = Toolkit.getDefaultToolkit().getImage(getImageURL("JBookTrader.png"));
         setIconImage(appIcon);
+        setMacDockIcon();
 
         add(strategyTableScrollPane, BorderLayout.CENTER);
 
@@ -318,4 +318,31 @@ public class MainFrameDialog extends JFrame implements ModelListener {
         setTitle(JBookTrader.APP_NAME);
         setMinimumSize(new Dimension(600, 200));
     }
+
+    private void setMacDockIcon() {
+        try {
+            // Load your icon image (use a high-res PNG or ICNS)
+            Image appIcon = Toolkit.getDefaultToolkit().getImage(getImageURL("JBookTraderMac.png"));
+
+            // Get the taskbar instance and set the image
+            Taskbar taskbar = Taskbar.getTaskbar();
+            taskbar.setIconImage(appIcon);
+
+            // Set the dock icon image on macOS using reflection (Apple EAWT)
+            try {
+                Class<?> applicationClass = Class.forName("com.apple.eawt.Application");
+                Object application = applicationClass.getMethod("getApplication").invoke(null);
+                applicationClass.getMethod("setDockIconImage", Image.class).invoke(application, appIcon);
+            } catch (Exception e) {
+                // Apple EAWT not available or failed - continue without it
+            }
+
+        } catch (final UnsupportedOperationException e) {
+            System.out.println("The taskbar is not supported on this platform.");
+        } catch (final SecurityException e) {
+            System.out.println("There was a security exception while setting the taskbar icon.");
+        }
+    }
+
+
 }
