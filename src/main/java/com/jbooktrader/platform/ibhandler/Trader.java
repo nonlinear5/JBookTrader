@@ -168,7 +168,6 @@ class Trader extends EWrapperAdapter {
     public void contractDetails(int reqId, ContractDetails contractDetails) {
         orderHandlerListener.onLog("Contract", contractDetails.contract().toString());
         contracts.add(contractDetails.contract().localSymbol());
-        System.out.println("req: " + reqId + ", symbol: " + contractDetails.contract().localSymbol());
     }
 
     @Override
