@@ -1,6 +1,8 @@
 package com.jbooktrader.platform.ibhandler;
 
 import com.ib.client.*;
+import com.jbooktrader.platform.model.Dispatcher;
+import com.jbooktrader.platform.report.EventReport;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -25,6 +27,7 @@ class TraderAssistant {
     private String targetAccount;
     private boolean isConnectedToIB;
     private ExecutorService service;
+    private final EventReport eventReport;
 
     TraderAssistant(Trader trader, OrderKeeper orderKeeper, OrderHandlerListener orderHandlerListener, int orderTimeout) {
         signal = new EJavaSignal();
@@ -34,8 +37,8 @@ class TraderAssistant {
         this.openOrderTimeoutMillis = orderTimeout * 1000;
         orderIdFactory = new OrderIdFactory();
         accountSemaphore = new Semaphore(1);
+        eventReport = Dispatcher.getInstance().getEventReport();
     }
-
 
     boolean hasOpenOrders() {
         return orderKeeper.hasOpenOrders();
@@ -90,21 +93,41 @@ class TraderAssistant {
             }
         });
 
-        socket.setServerLogLevel(3); // IB Log levels: 1=SYSTEM 2=ERROR 3=WARNING 4=INFORMATION 5=DETAIL
-        socket.reqNewsBulletins(true);
+
 
 
         boolean orderIdAcquired = orderIdFactory.acquireNextOrderID();
         if (!orderIdAcquired) {
+            eventReport.report("TraderAssistant", "Failed to acquire order ID semaphore.");
             disconnect();
             throw new RuntimeException("Could not acquire next order ID.");
         }
 
         boolean accountNameAcquired = acquireAccountInfo();
         if (!accountNameAcquired) {
+            eventReport.report("TraderAssistant", "Failed to acquire account info semaphore.");
             disconnect();
             throw new RuntimeException("Could not retrieve information for account: [" + targetAccount + "]");
         }
+
+        // this waiting block needs to be handled more gracefully
+        long waitCounter = 0;
+        while (orderIdFactory.getNextOrderID() == 0) {
+            try {
+                eventReport.report("TraderAssistant", "Waiting for next order ID, " + waitCounter + " seconds elapsed");
+                Thread.sleep(500);
+                waitCounter++;
+                if (waitCounter > 10) {
+                    throw new RuntimeException("Could not acquire next order ID.");
+                }
+            } catch (InterruptedException e) {
+                disconnect();
+                throw new RuntimeException("Thread was interrupted while waiting for next order ID.");
+            }
+        }
+
+        socket.setServerLogLevel(3); // IB Log levels: 1=SYSTEM 2=ERROR 3=WARNING 4=INFORMATION 5=DETAIL
+        socket.reqNewsBulletins(true);
 
         orderHandlerListener.onLog("OrderHandler", "Selected account: " + targetAccount);
         socket.reqAccountUpdates(true, targetAccount);
