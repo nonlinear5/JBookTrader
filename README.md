@@ -9,7 +9,7 @@ JBookTrader is written in Java and is intended for software developers. It is no
 
 ## Prerequisites
 
-- Java 24 or higher
+- Java 21 or higher
 - Maven 3.x
 - Interactive Brokers brokerage account (if you plan to trade live)
 
