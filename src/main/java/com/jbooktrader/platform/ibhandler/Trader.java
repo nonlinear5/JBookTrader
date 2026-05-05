@@ -202,7 +202,6 @@ class Trader extends EWrapperAdapter {
         }
     }
 
-    //@Override
     @Override
     public void error(int id, long errorTime, int errorCode, String errorMsg, String advancedOrderRejectJson) {
         try {
