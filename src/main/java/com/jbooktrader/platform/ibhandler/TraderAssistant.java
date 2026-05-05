@@ -36,7 +36,7 @@ class TraderAssistant {
         this.orderHandlerListener = orderHandlerListener;
         this.openOrderTimeoutMillis = orderTimeout * 1000;
         orderIdFactory = new OrderIdFactory();
-        accountSemaphore = new Semaphore(1);
+        accountSemaphore = new Semaphore(0);
         eventReport = Dispatcher.getInstance().getEventReport();
     }
 
@@ -94,8 +94,6 @@ class TraderAssistant {
         });
 
 
-
-
         boolean orderIdAcquired = orderIdFactory.acquireNextOrderID();
         if (!orderIdAcquired) {
             eventReport.report("TraderAssistant", "Failed to acquire order ID semaphore.");
@@ -108,22 +106,6 @@ class TraderAssistant {
             eventReport.report("TraderAssistant", "Failed to acquire account info semaphore.");
             disconnect();
             throw new RuntimeException("Could not retrieve information for account: [" + targetAccount + "]");
-        }
-
-        // this waiting block needs to be handled more gracefully
-        long waitCounter = 0;
-        while (orderIdFactory.getNextOrderID() == 0) {
-            try {
-                eventReport.report("TraderAssistant", "Waiting for next order ID, " + waitCounter + " seconds elapsed");
-                Thread.sleep(500);
-                waitCounter++;
-                if (waitCounter > 10) {
-                    throw new RuntimeException("Could not acquire next order ID.");
-                }
-            } catch (InterruptedException e) {
-                disconnect();
-                throw new RuntimeException("Thread was interrupted while waiting for next order ID.");
-            }
         }
 
         socket.setServerLogLevel(3); // IB Log levels: 1=SYSTEM 2=ERROR 3=WARNING 4=INFORMATION 5=DETAIL

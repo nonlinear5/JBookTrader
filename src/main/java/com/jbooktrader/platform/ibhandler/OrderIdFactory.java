@@ -11,16 +11,17 @@ class OrderIdFactory {
     private int nextOrderID;
 
     OrderIdFactory() {
-        orderIdSemaphore = new Semaphore(1);
+        orderIdSemaphore = new Semaphore(0);
     }
 
     boolean acquireNextOrderID() {
         try {
             return orderIdSemaphore.tryAcquire(5, TimeUnit.SECONDS);
         } catch (Exception e) {
-            return false;
+            throw new RuntimeException("Failed to acquire next order ID", e);
         }
     }
+
 
     int getNextOrderID() {
         return nextOrderID;

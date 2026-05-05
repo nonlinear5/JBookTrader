@@ -247,8 +247,8 @@ class Trader extends EWrapperAdapter {
     @Override
     public void nextValidId(int orderId) {
         try {
-            traderAssistant.setNextOrderID(orderId);
             orderHandlerListener.onLog("IB", "Next order ID: " + orderId);
+            traderAssistant.setNextOrderID(orderId);
         } catch (Throwable t) {
             // Do not allow the call stack to unwind to the socket -- it will cause disconnects
             String msg = extractStackTrace(t);
