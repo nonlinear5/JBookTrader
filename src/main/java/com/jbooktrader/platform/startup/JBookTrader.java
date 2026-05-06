@@ -8,6 +8,7 @@ import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import com.jbooktrader.platform.model.Dispatcher;
 import com.jbooktrader.platform.model.MainFrameController;
 import com.jbooktrader.platform.util.ui.MessageDialog;
+import com.jbooktrader.platform.util.ui.Scheduler;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
@@ -42,14 +43,14 @@ public class JBookTrader {
      * Instantiates the necessary parts of the application: the application model,
      * views, and controller.
      */
-    private JBookTrader() {
+    private JBookTrader(boolean autoStartTrading) {
         try {
             Dispatcher.getInstance().init();
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
 
-        new MainFrameController();
+        new MainFrameController(autoStartTrading);
     }
 
     /**
@@ -68,12 +69,17 @@ public class JBookTrader {
                 return;
             }
 
-            if (args.length != 0) {
-                String msg = APP_NAME + " takes no parameters.";
+            if (args.length > 1) {
+                String msg = APP_NAME + " takes no parameters, or one parameter.";
                 throw new RuntimeException(msg);
             }
 
-            new JBookTrader();
+            boolean autoStartTrading = false;
+            if (args.length == 1) {
+                autoStartTrading = Boolean.parseBoolean(args[0]);
+            }
+
+            new JBookTrader(autoStartTrading);
         } catch (Throwable t) {
             MessageDialog.showException(t);
         }

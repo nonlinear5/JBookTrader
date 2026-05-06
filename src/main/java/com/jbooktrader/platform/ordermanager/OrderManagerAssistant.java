@@ -83,18 +83,6 @@ public class OrderManagerAssistant {
             return;
         }
 
-        if (dispatcher.isRealAccount()) {
-            String lineSep = System.getProperty("line.separator");
-            String warning = "About to connect to a live IB account " + account + ". ";
-            warning += "Running " + JBookTrader.APP_NAME + " in trading mode against a live" + lineSep;
-            warning += "account may cause significant losses in your account. ";
-            warning += "Are you sure you want to proceed?";
-            int response = JOptionPane.showConfirmDialog(null, warning, JBookTrader.APP_NAME, JOptionPane.YES_NO_OPTION);
-            if (response == JOptionPane.NO_OPTION) {
-                return;
-            }
-        }
-
         PreferencesHolder prefs = PreferencesHolder.getInstance();
         String host = prefs.get(Host);
         int port = prefs.getInt(Port);

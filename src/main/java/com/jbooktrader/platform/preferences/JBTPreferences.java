@@ -29,6 +29,9 @@ public enum JBTPreferences {
     MarketDataTimeoutSeconds("Close open positions and stop trading if market data stops for longer than", "60"),
     OpenOrderTimeoutSeconds("Close open positions and stop trading if an open order is not filled within", "120"),
 
+    // Session Exit
+    SessionExitTime("Session exit time", "17:00"),
+
     // Notifications
     Notification("Notifications", "disabled"),
     SmtpHost("SMTP Host", "smtp.gmail.com"),

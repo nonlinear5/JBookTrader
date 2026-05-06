@@ -35,13 +35,16 @@ public class MainFrameController {
     private final StrategyTableModel strategyTableModel;
     private final Dispatcher dispatcher;
 
-    public MainFrameController() {
+    public MainFrameController(boolean autoStartTrading) {
         mainViewDialog = new MainFrameDialog();
         dispatcher = Dispatcher.getInstance();
         dispatcher.addListener(mainViewDialog);
         strategyTable = mainViewDialog.getStrategyTable();
         strategyTableModel = mainViewDialog.getStrategyTableModel();
         assignListeners();
+        if (autoStartTrading) {
+            tradeAll();
+        }
     }
 
     private void exit() {
@@ -74,6 +77,15 @@ public class MainFrameController {
         } catch (Throwable t) {
             dispatcher.getEventReport().report(t);
             MessageDialog.showException(t);
+        }
+    }
+
+    private void tradeAll() {
+        List<Strategy> strategies = dispatcher.getStrategies();
+        dispatcher.setMode(Mode.Trade);
+        OrderManagerAssistant oma = dispatcher.getOrderManager().getAssistant();
+        for (Strategy strategy : strategies) {
+            oma.addStrategy(strategy);
         }
     }
 
@@ -175,9 +187,7 @@ public class MainFrameController {
         mainViewDialog.tradeAction(e -> {
             try {
                 mainViewDialog.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                Strategy strategy = getSelectedRowStrategy();
-                dispatcher.setMode(Mode.Trade);
-                dispatcher.getOrderManager().getAssistant().addStrategy(strategy);
+                tradeAll();
             } catch (Throwable t) {
                 MessageDialog.showException(t);
             } finally {

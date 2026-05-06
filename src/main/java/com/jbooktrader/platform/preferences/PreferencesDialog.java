@@ -123,6 +123,37 @@ public class PreferencesDialog extends JBTDialog {
         add(portfolioManagerTab, MaxLeverage, maximumLeverageText);
         SpringUtilities.makeTwoColumnGrid(portfolioManagerTab);
 
+        // session exit
+        JPanel sessionExitTab = new JPanel(new SpringLayout());
+        tabbedPane.addTab("Session Exit", sessionExitTab);
+        JSpinner sessionExitHourSpinner = new JSpinner(new SpinnerNumberModel(17, 0, 23, 1));
+        JSpinner sessionExitMinuteSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 59, 1));
+
+        // Parse current time value to set initial values
+        String currentTime = prefs.get(SessionExitTime);
+        try {
+            String[] timeParts = currentTime.split(":");
+            if (timeParts.length == 2) {
+                sessionExitHourSpinner.setValue(Integer.parseInt(timeParts[0]));
+                sessionExitMinuteSpinner.setValue(Integer.parseInt(timeParts[1]));
+            }
+        } catch (Exception e) {
+            // Use default values if parsing fails
+            sessionExitHourSpinner.setValue(17);
+            sessionExitMinuteSpinner.setValue(0);
+        }
+
+        // Add labels and spinners
+        JPanel timePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        timePanel.add(new JLabel("Exit Time:"));
+        timePanel.add(sessionExitHourSpinner);
+        timePanel.add(new JLabel(":"));
+        timePanel.add(sessionExitMinuteSpinner);
+        timePanel.add(new JLabel("(HH:MM)"));
+
+        sessionExitTab.add(timePanel);
+        SpringUtilities.makeOneLineGrid(sessionExitTab);
+
         // auto-stop
         JPanel autoStopTab = new JPanel(new SpringLayout());
         tabbedPane.addTab("Auto Stop", autoStopTab);
@@ -185,6 +216,9 @@ public class PreferencesDialog extends JBTDialog {
                 // forced exit
                 prefs.set(MarketDataTimeoutSeconds, marketDataTimeoutPeriod.getValue().toString());
                 prefs.set(OpenOrderTimeoutSeconds, openOrderTimeoutPeriod.getValue().toString());
+
+                // session exit
+                prefs.set(SessionExitTime, String.format("%02d:%02d", sessionExitHourSpinner.getValue(), sessionExitMinuteSpinner.getValue()));
 
                 // notifications
                 prefs.set(Notification, notificationCombo.getSelectedItem());

@@ -14,6 +14,7 @@ import com.jbooktrader.platform.strategy.Strategy;
 import com.jbooktrader.platform.strategy.StrategyLoader;
 import com.jbooktrader.platform.util.ntp.DaySchedule;
 import com.jbooktrader.platform.util.ntp.NTPClock;
+import com.jbooktrader.platform.util.ui.Scheduler;
 import com.jbooktrader.platform.web.MonitoringServer;
 
 import java.io.File;
@@ -74,6 +75,7 @@ public class Dispatcher {
                 throw new RuntimeException("Could not create directory " + reportsDir);
             }
         }
+
 
         marketDataDir = homeDir + "/marketData/";
         File marketDataDirFile = new File(marketDataDir);
@@ -220,6 +222,8 @@ public class Dispatcher {
         if (mode == Mode.Trade || mode == Mode.ForwardTest) {
             orderManager.getAssistant().connect();
             MonitoringServer.start();
+            new Scheduler(eventReport).start();
+
         } else if (mode == Mode.BackTest || mode == Mode.BackTestAll || mode == Mode.Optimization) {
             orderHandler.disconnect();
         }
