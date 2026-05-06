@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -76,7 +77,7 @@ public class NTPClock {
         eventReport.report("NTP clock", "NTP clock is initialized. Time offset: " + offset.get() + " ms");
 
         // schedule regular offset updates
-        //scheduler.scheduleWithFixedDelay(this::updateOffset, 2, 2, TimeUnit.MINUTES);
+        scheduler.scheduleWithFixedDelay(this::updateOffset, 2, 2, TimeUnit.MINUTES);
 
     }
 
