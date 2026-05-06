@@ -1,6 +1,7 @@
-package com.jbooktrader.strategy.base;
+package com.jbooktrader.strategy.es;
 
 import com.ib.client.Contract;
+import com.jbooktrader.indicator.combo.TensorEqualizer;
 import com.jbooktrader.platform.commission.Commission;
 import com.jbooktrader.platform.commission.CommissionFactory;
 import com.jbooktrader.platform.optimizer.StrategyParams;
@@ -9,14 +10,16 @@ import com.jbooktrader.platform.strategy.Strategy;
 import com.jbooktrader.platform.util.contract.ContractFactory;
 
 /**
- * Margin requirements: https://www.interactivebrokers.com/en/index.php?f=26662
- * Initial margin (as of March 9, 2020): $12,740
+ *
+ * This strategy is meant for paper-trading only!
  *
  * @author Eugene Kononov
  */
-public abstract class StrategyESPaper extends Strategy {
+public abstract class StrategyESPaperOnly extends Strategy {
+    protected long counter;
+
     // S&P 500 e-mini future
-    protected StrategyESPaper(StrategyParams optimizationParams) {
+    protected StrategyESPaperOnly(StrategyParams optimizationParams) {
         super(optimizationParams);
         // Specify the contract to trade
         Contract contract = ContractFactory.makeFutureContract("ES", "CME");
@@ -25,6 +28,20 @@ public abstract class StrategyESPaper extends Strategy {
         int multiplier = 50;// contract multiplier
         Commission commission = CommissionFactory.getBundledNorthAmericaFutureCommission();
         setStrategy(contract, tradingSchedule, multiplier, commission);
+    }
+
+    @Override
+    public void setIndicators() {
+    }
+
+    @Override
+    public void onBookSnapshot() {
+        counter++;
+        if (counter % 60 >= 30) {
+            goFlat();
+        } else  {
+            goLong(1);
+        }
     }
 
 }

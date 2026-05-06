@@ -88,7 +88,7 @@ class TraderAssistant {
                 try {
                     reader.processMsgs();
                 } catch (Exception e) {
-                    orderHandlerListener.onLog("OrderHandler", "EReader exception: " + e.getMessage());
+                    orderHandlerListener.onLog("TraderAssistant", "EReader exception: " + e.getMessage());
                 }
             }
         });
@@ -111,7 +111,7 @@ class TraderAssistant {
         socket.setServerLogLevel(3); // IB Log levels: 1=SYSTEM 2=ERROR 3=WARNING 4=INFORMATION 5=DETAIL
         socket.reqNewsBulletins(true);
 
-        orderHandlerListener.onLog("OrderHandler", "Selected account: " + targetAccount);
+        orderHandlerListener.onLog("TraderAssistant", "Selected account: " + targetAccount);
         socket.reqAccountUpdates(true, targetAccount);
         setConnectedToIB(true);
         return targetAccount;
@@ -140,7 +140,7 @@ class TraderAssistant {
             socket.reqExecutions(-1, executionFilter);
         } catch (Throwable t) {
             // Do not allow exceptions come back to the socket -- it will cause disconnects
-            orderHandlerListener.onLog("OrderHandler", t.getMessage());
+            orderHandlerListener.onLog("TraderAssistant", t.getMessage());
         }
     }
 
