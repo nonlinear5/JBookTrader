@@ -31,7 +31,7 @@ public class PaperTest {
 
         PrudenceEvaluator prudenceEvaluator = new PrudenceEvaluator(tradeReturns, "Uniform");
         MaximumSearch search = new MaximumSearch();
-        // ekk
+
         //double prudentLeverage = search.findRootDF3(prudenceEvaluator);
         //System.out.println("prudent leverage: " + prudentLeverage);
 
