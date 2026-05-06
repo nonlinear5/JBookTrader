@@ -24,7 +24,7 @@ jobs:
     - name: Set up JDK 24
       uses: actions/setup-java@v4
       with:
-        java-version: '24'
+        java-version: '21'
         distribution: 'temurin'
         cache: maven
     - name: Install TwsApi-10.37.jar dependency
