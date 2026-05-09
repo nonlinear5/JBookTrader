@@ -1,17 +1,27 @@
 
 # JBookTrader
 
-JBookTrader is a fully automated trading system (ATS) that can trade various types of market securities during the trading day without user monitoring. All aspects of trading, such as obtaining market prices, analyzing price patterns, making trading decisions, placing orders, monitoring order executions, and controlling the risk are automated according to the user preferences. The central idea behind JBookTrader is to completely remove the human element/bias from trading, so that the trading system can systematically and consistently follow a predefined set of rules.
+JBookTrader is an open-source, Java-based platform for building fully automated trading systems which execute market-depth-based trading strategies without 
+requiring manual user monitoring. The platform is designed to take human element/bias out of trading by operating entirely on 
+pre-defined programmatic rules.
 
-The features include strategy back testing, optimization, market data recording, and real time trading via the Interactive Brokers API.
 
-JBookTrader is written in Java and is intended for software developers. It is not an "off-the-shelf" product that can be installed and run. Instead, JBookTrader provides a framework for developing automated trading systems and requires a certain amount of programming knowledge and experience in Java. If you are not a software developer or if you don't have much experience programming in Java, JBookTrader is probably not for you.
+* **Market Depth Focus**: Operates using Level 2 data (Depth of Market / DOM) rather than traditional candlestick or interval charts.
+
+* **Zero Human Intervention**: Automates all stages of trading from data collection to order execution for fully automated trading.
+
+* **Interactive Brokers Integration**: Designed to run via the Interactive Brokers API and Trader Workstation (TWS).
+
+* **Asset Versatility**: Capable of trading any instrument provided the user has a market depth subscription (e.g., futures, options, stocks).
+
+* **Integrated Framework**: Includes modules for historical data recording, backtesting, optimization, and forward testing.
+
 
 ## Prerequisites
 
 - Java 21 or higher
 - Maven 3.x
-- Interactive Brokers brokerage account (if you plan to trade live)
+- Interactive Brokers brokerage account (if you plan to trade live, or paper-trade)
 
 
 ## Setup
@@ -23,12 +33,11 @@ JBookTrader is written in Java and is intended for software developers. It is no
    cd jbooktrader
    ```
 
-2. **Install the TWS API JAR to your local Maven repository:**
+2. **Install the TWS API JAR to your local Maven repository. This is needed because the TWS API JAR is not available in public Maven repositories.**
 
    ```sh
    mvn install:install-file -Dfile=lib/TwsApi-10.37.jar -DgroupId=com.ib -DartifactId=twsapi -Dversion=10.37 -Dpackaging=jar
    ```
-This is needed because the TWS API JAR is not available in public Maven repositories.
 
 ## Build
 
@@ -69,6 +78,5 @@ The user manual is available: [`/docs/JBookTrader.UserGuide.docx`](docs/JBookTra
 However, it's out of date, so I am working on updating it. 
 
 ## Support
-For support, questions, and suggestions, please join the [JBookTrader Google Group
-](https://groups.google.com/g/jbooktrader)
+For support, questions, and suggestions, please join the [JBookTrader Google Group](https://groups.google.com/g/jbooktrader)
 
