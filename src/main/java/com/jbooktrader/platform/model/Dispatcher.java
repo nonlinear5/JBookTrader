@@ -14,7 +14,7 @@ import com.jbooktrader.platform.strategy.Strategy;
 import com.jbooktrader.platform.strategy.StrategyLoader;
 import com.jbooktrader.platform.util.ntp.DaySchedule;
 import com.jbooktrader.platform.util.ntp.NTPClock;
-import com.jbooktrader.platform.util.ui.Scheduler;
+import com.jbooktrader.platform.util.ui.ExitScheduler;
 import com.jbooktrader.platform.web.MonitoringServer;
 
 import java.io.File;
@@ -40,7 +40,7 @@ public class Dispatcher {
     private PortfolioManager portfolioManager;
     private DaySchedule daySchedule;
     private NTPClock ntpClock;
-    private Mode mode;
+    private Mode mode, previousMode;
     private String reportsDir, marketDataDir, resourcesDir;
     private OrderHandler orderHandler;
     private List<Strategy> strategies;
@@ -203,10 +203,16 @@ public class Dispatcher {
         return mode;
     }
 
+    public Mode getPreviousMode() {
+        return previousMode;
+    }
+
     public void setMode(Mode mode) {
         if (this.mode == mode) {
             return;
         }
+
+        previousMode = this.mode;
 
         this.mode = mode;
         eventReport.report(JBookTrader.APP_NAME, "Running mode changed to: " + mode.getName());
@@ -222,7 +228,7 @@ public class Dispatcher {
         if (mode == Mode.Trade || mode == Mode.ForwardTest) {
             orderManager.getAssistant().connect();
             MonitoringServer.start();
-            new Scheduler(eventReport).start();
+            new ExitScheduler(eventReport).start();
 
         } else if (mode == Mode.BackTest || mode == Mode.BackTestAll || mode == Mode.Optimization) {
             orderHandler.disconnect();

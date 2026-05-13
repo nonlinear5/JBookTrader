@@ -11,10 +11,10 @@ import java.util.concurrent.TimeUnit;
 
 import static com.jbooktrader.platform.preferences.JBTPreferences.SessionExitTime;
 
-public class Scheduler {
+public class ExitScheduler {
     private final EventReport eventReport;
 
-    public Scheduler(EventReport eventReport) {
+    public ExitScheduler(EventReport eventReport) {
         this.eventReport = eventReport;
     }
 
@@ -32,13 +32,13 @@ public class Scheduler {
 
         long delay = Duration.between(LocalDateTime.now(), targetTime).toMillis();
         if (delay > 0) {
-            eventReport.report("Scheduler", "JBookTrader will exit at " + targetTime.toLocalTime());
+            eventReport.report("ExitScheduler", "JBookTrader will exit at " + targetTime.toLocalTime());
             scheduler.schedule(() -> {
-                eventReport.report("Scheduler", "Scheduled exit executed.");
+                eventReport.report("ExitScheduler", "Scheduled exit executed.");
                 System.exit(0);
             }, delay, TimeUnit.MILLISECONDS);
         } else {
-            eventReport.report("Scheduler", "Could not schedule exit because delay=" + delay);
+            eventReport.report("ExitScheduler", "Could not schedule exit because delay=" + delay);
         }
         scheduler.shutdown();
     }

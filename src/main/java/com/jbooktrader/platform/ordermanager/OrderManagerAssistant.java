@@ -21,7 +21,6 @@ import com.jbooktrader.platform.strategy.StrategyRunner;
 import com.jbooktrader.platform.util.format.NumberFormatterFactory;
 import com.jbooktrader.platform.util.ui.MessageDialog;
 
-import javax.swing.*;
 import java.text.DecimalFormat;
 import java.util.Collection;
 import java.util.HashMap;
@@ -178,7 +177,7 @@ public class OrderManagerAssistant {
         String contractName = snapshot.getContract();
         String exchange = strategy.getContract().exchange();
 
-        if (mode == Mode.Trade || mode == Mode.ForceClose) {
+        if (mode == Mode.Trade || (mode == Mode.ForceClose && dispatcher.getPreviousMode() == Mode.Trade)) {
             orderHandler.submitMarketOrder(strategy.getName(), exchange, contractName, orderAction, quantity);
         } else {
             String transactionType = (orderAction == Types.Action.BUY) ? "BOT" : "SLD";
