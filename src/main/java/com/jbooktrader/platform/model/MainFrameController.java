@@ -187,7 +187,9 @@ public class MainFrameController {
         mainViewDialog.tradeAction(e -> {
             try {
                 mainViewDialog.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                tradeAll();
+                Strategy strategy = getSelectedRowStrategy();
+                dispatcher.setMode(Mode.Trade);
+                dispatcher.getOrderManager().getAssistant().addStrategy(strategy);
             } catch (Throwable t) {
                 MessageDialog.showException(t);
             } finally {
@@ -198,12 +200,7 @@ public class MainFrameController {
         mainViewDialog.tradeAllAction(e -> {
             try {
                 mainViewDialog.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                List<Strategy> strategies = dispatcher.getStrategies();
-                dispatcher.setMode(Mode.Trade);
-                OrderManagerAssistant oma = dispatcher.getOrderManager().getAssistant();
-                for (Strategy strategy : strategies) {
-                    oma.addStrategy(strategy);
-                }
+                tradeAll();
             } catch (Throwable t) {
                 MessageDialog.showException(t);
             } finally {
