@@ -16,7 +16,6 @@ pre-defined programmatic rules.
 
 * **Integrated Framework**: Includes modules for historical data recording, backtesting, optimization, and forward testing.
 
-
 ## Prerequisites
 
 - Java 21 or higher
@@ -36,7 +35,7 @@ pre-defined programmatic rules.
 2. **Install the TWS API JAR to your local Maven repository. This is needed because the TWS API JAR is not available in public Maven repositories.**
 
    ```sh
-   mvn install:install-file -Dfile=lib/TwsApi-10.37.jar -DgroupId=com.ib -DartifactId=twsapi -Dversion=10.37 -Dpackaging=jar
+   mvn install:install-file -Dfile=lib/TwsApi-10.45.jar -DgroupId=com.ib -DartifactId=twsapi -Dversion=10.45 -Dpackaging=jar
    ```
 
 ## Build
@@ -61,7 +60,7 @@ To start JBookTrader, run the following command:
 java -jar target/JBookTrader.jar
 ```
 
-If you run JBookTrader to optimize trading strategies, you may want to allocate more memory to the JVM. 
+If you run JBookTrader to optimize trading strategies, you may want to allocate more memory to the JVM.
 
 ```sh
 java -Xms10g -Xms10g -jar target/JBookTrader.jar
@@ -75,8 +74,9 @@ java --enable-native-access=ALL-UNNAMED -jar target/JBookTrader.jar
 
 ## User Manual
 The user manual is available: [`/docs/JBookTrader.UserGuide.docx`](docs/JBookTrader.UserGuide.docx).
-However, it's out of date, so I am working on updating it. 
+However, it's out of date, so I am working on updating it.
 
 ## Support
 For support, questions, and suggestions, please join the [JBookTrader Google Group](https://groups.google.com/g/jbooktrader)
+
 

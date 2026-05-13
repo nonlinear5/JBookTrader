@@ -391,29 +391,336 @@ abstract class EWrapperAdapter implements EWrapper {
     public void currentTimeInMillis(long timeInMillis) {
     }
 
+
+    // protobuf methods
     @Override
-    public void orderStatusProtoBuf(OrderStatusProto.OrderStatus var1) {
+    public void orderStatusProtoBuf(OrderStatusProto.OrderStatus orderStatusProto) {
     }
 
     @Override
-    public void openOrderProtoBuf(OpenOrderProto.OpenOrder var1) {
+    public void openOrderProtoBuf(OpenOrderProto.OpenOrder openOrderProto) {
     }
 
     @Override
-    public void openOrdersEndProtoBuf(OpenOrdersEndProto.OpenOrdersEnd var1) {
+    public void openOrdersEndProtoBuf(OpenOrdersEndProto.OpenOrdersEnd openOrdersEndProto) {
     }
 
     @Override
-    public void errorProtoBuf(ErrorMessageProto.ErrorMessage var1) {
+    public void errorProtoBuf(ErrorMessageProto.ErrorMessage errorMessageProto) {
     }
 
     @Override
-    public void execDetailsProtoBuf(ExecutionDetailsProto.ExecutionDetails var1) {
+    public void execDetailsProtoBuf(ExecutionDetailsProto.ExecutionDetails executionDetailsProto) {
     }
 
     @Override
-    public void execDetailsEndProtoBuf(ExecutionDetailsEndProto.ExecutionDetailsEnd var1) {
+    public void execDetailsEndProtoBuf(ExecutionDetailsEndProto.ExecutionDetailsEnd executionDetailsEndProto) {
     }
 
+    @Override
+    public void completedOrderProtoBuf(CompletedOrderProto.CompletedOrder completedOrderProto) {
+    }
 
+    @Override
+    public void completedOrdersEndProtoBuf(CompletedOrdersEndProto.CompletedOrdersEnd completedOrdersEndProto) {
+    }
+
+    @Override
+    public void orderBoundProtoBuf(OrderBoundProto.OrderBound orderBoundProto) {
+    }
+
+    @Override
+    public void contractDataProtoBuf(ContractDataProto.ContractData contractDataProto) {
+    }
+
+    @Override
+    public void bondContractDataProtoBuf(ContractDataProto.ContractData contractDataProto) {
+    }
+
+    @Override
+    public void contractDataEndProtoBuf(ContractDataEndProto.ContractDataEnd contractDataEndProto) {
+    }
+
+    @Override
+    public void tickPriceProtoBuf(TickPriceProto.TickPrice tickPriceProto) {
+    }
+
+    @Override
+    public void tickSizeProtoBuf(TickSizeProto.TickSize tickSizeProto) {
+    }
+
+    @Override
+    public void tickOptionComputationProtoBuf(TickOptionComputationProto.TickOptionComputation tickOptionComputationProto) {
+    }
+
+    @Override
+    public void tickGenericProtoBuf(TickGenericProto.TickGeneric tickGenericProto) {
+    }
+
+    @Override
+    public void tickStringProtoBuf(TickStringProto.TickString tickStringProto) {
+    }
+
+    @Override
+    public void tickSnapshotEndProtoBuf(TickSnapshotEndProto.TickSnapshotEnd tickSnapshotEndProto) {
+    }
+
+    @Override
+    public void updateMarketDepthProtoBuf(MarketDepthProto.MarketDepth marketDepthProto) {
+    }
+
+    @Override
+    public void updateMarketDepthL2ProtoBuf(MarketDepthL2Proto.MarketDepthL2 marketDepthL2Proto) {
+    }
+
+    @Override
+    public void marketDataTypeProtoBuf(MarketDataTypeProto.MarketDataType marketDataTypeProto) {
+    }
+
+    @Override
+    public void tickReqParamsProtoBuf(TickReqParamsProto.TickReqParams tickReqParamsProto) {
+    }
+
+    @Override
+    public void updateAccountValueProtoBuf(AccountValueProto.AccountValue accounValueProto) {
+    }
+
+    @Override
+    public void updatePortfolioProtoBuf(PortfolioValueProto.PortfolioValue portfolioValueProto) {
+    }
+
+    @Override
+    public void updateAccountTimeProtoBuf(AccountUpdateTimeProto.AccountUpdateTime accountUpdateTimeProto) {
+    }
+
+    @Override
+    public void accountDataEndProtoBuf(AccountDataEndProto.AccountDataEnd accountDataEndProto) {
+    }
+
+    @Override
+    public void managedAccountsProtoBuf(ManagedAccountsProto.ManagedAccounts managedAccountsProto) {
+    }
+
+    @Override
+    public void positionProtoBuf(PositionProto.Position positionProto) {
+    }
+
+    @Override
+    public void positionEndProtoBuf(PositionEndProto.PositionEnd positionEndProto) {
+    }
+
+    @Override
+    public void accountSummaryProtoBuf(AccountSummaryProto.AccountSummary accountSummaryProto) {
+    }
+
+    @Override
+    public void accountSummaryEndProtoBuf(AccountSummaryEndProto.AccountSummaryEnd accountSummaryEndProto) {
+    }
+
+    @Override
+    public void positionMultiProtoBuf(PositionMultiProto.PositionMulti positionMultiProto) {
+    }
+
+    @Override
+    public void positionMultiEndProtoBuf(PositionMultiEndProto.PositionMultiEnd positionMultiEndProto) {
+    }
+
+    @Override
+    public void accountUpdateMultiProtoBuf(AccountUpdateMultiProto.AccountUpdateMulti accountUpdateMultiProto) {
+    }
+
+    @Override
+    public void accountUpdateMultiEndProtoBuf(AccountUpdateMultiEndProto.AccountUpdateMultiEnd accountUpdateMultiEndProto) {
+    }
+
+    @Override
+    public void historicalDataProtoBuf(HistoricalDataProto.HistoricalData historicalDataProto) {
+    }
+
+    @Override
+    public void historicalDataUpdateProtoBuf(HistoricalDataUpdateProto.HistoricalDataUpdate historicalDataUpdateProto) {
+    }
+
+    @Override
+    public void historicalDataEndProtoBuf(HistoricalDataEndProto.HistoricalDataEnd historicalDataEndProto) {
+    }
+
+    @Override
+    public void realTimeBarTickProtoBuf(RealTimeBarTickProto.RealTimeBarTick realTimeBarTickProto) {
+    }
+
+    @Override
+    public void headTimestampProtoBuf(HeadTimestampProto.HeadTimestamp headTimestampProto) {
+    }
+
+    @Override
+    public void histogramDataProtoBuf(HistogramDataProto.HistogramData histogramDataProto) {
+    }
+
+    @Override
+    public void historicalTicksProtoBuf(HistoricalTicksProto.HistoricalTicks historicalTicksProto) {
+    }
+
+    @Override
+    public void historicalTicksBidAskProtoBuf(HistoricalTicksBidAskProto.HistoricalTicksBidAsk historicalTicksBidAskProto) {
+    }
+
+    @Override
+    public void historicalTicksLastProtoBuf(HistoricalTicksLastProto.HistoricalTicksLast historicalTicksLastProto) {
+    }
+
+    @Override
+    public void tickByTickDataProtoBuf(TickByTickDataProto.TickByTickData tickByTickDataProto) {
+    }
+
+    @Override
+    public void updateNewsBulletinProtoBuf(NewsBulletinProto.NewsBulletin newsBulletinProto) {
+    }
+
+    @Override
+    public void newsArticleProtoBuf(NewsArticleProto.NewsArticle newsArticleProto) {
+    }
+
+    @Override
+    public void newsProvidersProtoBuf(NewsProvidersProto.NewsProviders newsProvidersProto) {
+    }
+
+    @Override
+    public void historicalNewsProtoBuf(HistoricalNewsProto.HistoricalNews historicalNewsProto) {
+    }
+
+    @Override
+    public void historicalNewsEndProtoBuf(HistoricalNewsEndProto.HistoricalNewsEnd historicalNewsEndProto) {
+    }
+
+    @Override
+    public void wshMetaDataProtoBuf(WshMetaDataProto.WshMetaData wshMetaDataProto) {
+    }
+
+    @Override
+    public void wshEventDataProtoBuf(WshEventDataProto.WshEventData wshEventDataProto) {
+    }
+
+    @Override
+    public void tickNewsProtoBuf(TickNewsProto.TickNews tickNewsProto) {
+    }
+
+    @Override
+    public void scannerParametersProtoBuf(ScannerParametersProto.ScannerParameters scannerParametersProto) {
+    }
+
+    @Override
+    public void scannerDataProtoBuf(ScannerDataProto.ScannerData scannerDataProto) {
+    }
+
+    @Override
+    public void fundamentalsDataProtoBuf(FundamentalsDataProto.FundamentalsData fundamentalsDataProto) {
+    }
+
+    @Override
+    public void pnlProtoBuf(PnLProto.PnL pnlProto) {
+    }
+
+    @Override
+    public void pnlSingleProtoBuf(PnLSingleProto.PnLSingle pnlSingleProto) {
+    }
+
+    @Override
+    public void receiveFAProtoBuf(ReceiveFAProto.ReceiveFA receiveFAProto) {
+    }
+
+    @Override
+    public void replaceFAEndProtoBuf(ReplaceFAEndProto.ReplaceFAEnd replaceFAEndProto) {
+    }
+
+    @Override
+    public void commissionAndFeesReportProtoBuf(CommissionAndFeesReportProto.CommissionAndFeesReport commissionAndFeesReportProto) {
+    }
+
+    @Override
+    public void historicalScheduleProtoBuf(HistoricalScheduleProto.HistoricalSchedule historicalScheduleProto) {
+    }
+
+    @Override
+    public void rerouteMarketDataRequestProtoBuf(RerouteMarketDataRequestProto.RerouteMarketDataRequest rerouteMarketDataRequestProto) {
+    }
+
+    @Override
+    public void rerouteMarketDepthRequestProtoBuf(RerouteMarketDepthRequestProto.RerouteMarketDepthRequest rerouteMarketDepthRequestProto) {
+    }
+
+    @Override
+    public void secDefOptParameterProtoBuf(SecDefOptParameterProto.SecDefOptParameter secDefOptParameterProto) {
+    }
+
+    @Override
+    public void secDefOptParameterEndProtoBuf(SecDefOptParameterEndProto.SecDefOptParameterEnd secDefOptParameterEndProto) {
+    }
+
+    @Override
+    public void softDollarTiersProtoBuf(SoftDollarTiersProto.SoftDollarTiers softDollarTiersProto) {
+    }
+
+    @Override
+    public void familyCodesProtoBuf(FamilyCodesProto.FamilyCodes familyCodesProto) {
+    }
+
+    @Override
+    public void symbolSamplesProtoBuf(SymbolSamplesProto.SymbolSamples symbolSamplesProto) {
+    }
+
+    @Override
+    public void smartComponentsProtoBuf(SmartComponentsProto.SmartComponents smartComponentsProto) {
+    }
+
+    @Override
+    public void marketRuleProtoBuf(MarketRuleProto.MarketRule marketRuleProto) {
+    }
+
+    @Override
+    public void userInfoProtoBuf(UserInfoProto.UserInfo userInfoProto) {
+    }
+
+    @Override
+    public void nextValidIdProtoBuf(NextValidIdProto.NextValidId nextValidIdProto) {
+    }
+
+    @Override
+    public void currentTimeProtoBuf(CurrentTimeProto.CurrentTime currentTimeProto) {
+    }
+
+    @Override
+    public void currentTimeInMillisProtoBuf(CurrentTimeInMillisProto.CurrentTimeInMillis currentTimeInMillisProto) {
+    }
+
+    @Override
+    public void verifyMessageApiProtoBuf(VerifyMessageApiProto.VerifyMessageApi verifyMessageApiProto) {
+    }
+
+    @Override
+    public void verifyCompletedProtoBuf(VerifyCompletedProto.VerifyCompleted verifyCompletedProto) {
+    }
+
+    @Override
+    public void displayGroupListProtoBuf(DisplayGroupListProto.DisplayGroupList displayGroupListProto) {
+    }
+
+    @Override
+    public void displayGroupUpdatedProtoBuf(DisplayGroupUpdatedProto.DisplayGroupUpdated displayGroupUpdatedProto) {
+    }
+
+    @Override
+    public void marketDepthExchangesProtoBuf(MarketDepthExchangesProto.MarketDepthExchanges marketDepthExchangesProto) {
+    }
+
+    @Override
+    public void configResponseProtoBuf(ConfigResponseProto.ConfigResponse configResponseProto) {
+    }
+
+    @Override
+    public void updateConfigResponseProtoBuf(UpdateConfigResponseProto.UpdateConfigResponse updateConfigResponseProto) {
+    }
 }
+
+
+
