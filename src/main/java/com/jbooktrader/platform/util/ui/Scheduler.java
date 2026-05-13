@@ -27,14 +27,15 @@ public class Scheduler {
         int hour = Integer.parseInt(parts[0]);
         int minute = Integer.parseInt(parts[1]);
 
-        LocalDateTime targetTime = LocalDateTime.now().withHour(hour).withMinute(minute);
-        long delay = Duration.between(LocalDateTime.now(), targetTime).toMillis();
+        // we want exit happen on the next day, at the designated time
+        LocalDateTime targetTime = LocalDateTime.now().plusDays(1).withHour(hour).withMinute(minute);
 
+        long delay = Duration.between(LocalDateTime.now(), targetTime).toMillis();
         if (delay > 0) {
             eventReport.report("Scheduler", "JBookTrader will exit at " + targetTime.toLocalTime());
             scheduler.schedule(() -> {
                 eventReport.report("Scheduler", "Scheduled exit executed.");
-                System.exit(1);
+                System.exit(0);
             }, delay, TimeUnit.MILLISECONDS);
         } else {
             eventReport.report("Scheduler", "Could not schedule exit because delay=" + delay);
