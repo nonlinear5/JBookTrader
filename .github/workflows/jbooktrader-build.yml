@@ -28,8 +28,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Install TwsApi-10.37.jar dependency
-      run: mvn install:install-file -Dfile=lib/TwsApi-10.37.jar -DgroupId=com.ib -DartifactId=twsapi -Dversion=10.37 -Dpackaging=jar        
+      run: mvn install:install-file -Dfile=lib/TwsApi-10.45.jar -DgroupId=com.ib -DartifactId=twsapi -Dversion=10.45 -Dpackaging=jar
     - name: package JBookTrdaer
-      #run: mvn -B clean package --file pom.xml
       run: mvn clean package
 
