@@ -20,6 +20,10 @@ public class CommissionFactory {
         return getCommission(2.25, 2.25); // ES, 6E
     }
 
+    public static Commission getMicroFutureCommission() {
+        return getCommission(0.25, 0.25); // MES
+    }
+
     /**
      * Futures commissions: http://individuals.interactivebrokers.com/en/p.php?f=commission#futures1
      */
