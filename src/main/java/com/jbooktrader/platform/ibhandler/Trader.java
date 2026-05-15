@@ -1,12 +1,10 @@
 package com.jbooktrader.platform.ibhandler;
 
-import com.ib.client.Contract;
-import com.ib.client.ContractDetails;
-import com.ib.client.Decimal;
-import com.ib.client.Execution;
+import com.ib.client.*;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -166,6 +164,18 @@ class Trader extends EWrapperAdapter {
 
     @Override
     public void contractDetails(int reqId, ContractDetails contractDetails) {
+        String contractDate = contractDetails.contractMonth();
+        int contractYear = Integer.parseInt(contractDate.substring(0, 4));
+
+        LocalDate date = LocalDate.now();
+        int currentYear = date.getYear();
+
+        if ((contractYear - currentYear) > 1) {
+            // if the contact is neither for this year nor for the following year, discard it
+            return;
+        }
+
+
         orderHandlerListener.onLog("Contract", contractDetails.contract().toString());
         contracts.add(contractDetails.contract().localSymbol());
     }
@@ -277,6 +287,12 @@ class Trader extends EWrapperAdapter {
             String msg = extractStackTrace(e);
             orderHandlerListener.onLog("OrderHandler", msg);
         }
+    }
+
+    @Override
+    public void commissionAndFeesReport(CommissionAndFeesReport commissionAndFeesReport) {
+        double commissionAndFees = commissionAndFeesReport.commissionAndFees();
+        String execId = commissionAndFeesReport.execId();
     }
 
     @Override

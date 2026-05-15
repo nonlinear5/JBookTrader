@@ -61,8 +61,7 @@ class MarketDataHandler {
 
     public void unsubscribe() {
         requestId++;
-        boolean isSmartDepth = true;
-        socket.cancelMktDepth(requestId, isSmartDepth);
+        socket.cancelMktDepth(requestId, true);
         requestId++;
         socket.cancelMktData(requestId);
     }
@@ -95,29 +94,28 @@ class MarketDataHandler {
 
 
     public void tickSize(int tickerId, int field, int size) {
-        if (field == TickType.VOLUME.index()) {
-            MarketDepth marketDepth = marketDepths.get(tickerId);
-            if (marketDepth != null) {
-                int mostLiquidId = marketDepth.processVolume(tickerId, size);
-                if (mostLiquidId > 0) {
-                    int oldDepthRequestId = marketDepth.getDepthRequestId();
-                    if (oldDepthRequestId > 0) {
-                        boolean isSmartDepth = true;
-                        socket.cancelMktDepth(oldDepthRequestId, isSmartDepth);
-                        marketDepths.remove(oldDepthRequestId);
-                        marketDepth.reset();
-                    }
+        MarketDepth marketDepth = marketDepths.get(tickerId);
+        int mostLiquidId = marketDepth.getMostLiquidId();
+        if (mostLiquidId > 0) {
+            return;
+        }
 
-                    requestId++;
-                    marketDepths.put(requestId, marketDepth);
-                    marketDepth.setDepthRequestId(requestId);
-                    String localSym = marketDepth.getLocalSymbol(mostLiquidId);
-                    Contract contract = marketDepth.getContract();
-                    contract.localSymbol(localSym);
-                    socket.reqMktDepth(requestId, contract, 10, false, null);
-                    String msg = "Detected most liquid contract for ticker " + marketDepth.getSymbol() + ": " + localSym;
-                    eventReport.report("MarketDataHandler", msg);
-                }
+        if (field == TickType.VOLUME.index()) {
+            marketDepth.processVolume(tickerId, size);
+            mostLiquidId = marketDepth.getMostLiquidId();
+            if (mostLiquidId > 0) {
+                requestId++;
+                marketDepths.put(requestId, marketDepth);
+                marketDepth.setDepthRequestId(requestId);
+                String localSym = marketDepth.getLocalSymbol(mostLiquidId);
+                String msg = "Detected most liquid contract for ticker: " + localSym;
+                eventReport.report("MarketDataHandler", msg);
+
+                Contract contract = marketDepth.getContract();
+                contract.localSymbol(localSym);
+                socket.reqMktDepth(requestId, contract, 10, false, null);
+                msg = "Requested market depth for contract " + localSym + " with request id " + requestId;
+                eventReport.report("MarketDataHandler", msg);
             }
         }
     }
@@ -136,6 +134,5 @@ class MarketDataHandler {
             }
         }
     }
-
 
 }

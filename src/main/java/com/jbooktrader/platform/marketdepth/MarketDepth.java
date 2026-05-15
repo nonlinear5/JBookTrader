@@ -25,6 +25,8 @@ public class MarketDepth {
     private final static int SIDE_BID = 1;
 
     private final static long millisInHour = 1000L * 60L * 60L;
+    private final static long minVolume = 10000L; // minimum volume for a contract to be considered liquid
+
 
     private final static int maxDepth = 10;
     private final NTPClock ntpclock;
@@ -36,7 +38,6 @@ public class MarketDepth {
     private final Map<Integer, String> localSymbols;
     private final String symbol;
     private final EventReport eventReport;
-    private final DaySchedule daySchedule;
 
     private String localSymbol;
     private double bestBidPrice, bestAskPrice;
@@ -56,7 +57,6 @@ public class MarketDepth {
         localSymbols = new HashMap<>();
         ntpclock = Dispatcher.getInstance().getNTPClock();
         eventReport = Dispatcher.getInstance().getEventReport();
-        daySchedule = Dispatcher.getInstance().getDaySchedule();
     }
 
     public String getSymbol() {
@@ -65,6 +65,10 @@ public class MarketDepth {
 
     public Contract getContract() {
         return contract;
+    }
+
+    public int getMostLiquidId() {
+        return mostLiquidId;
     }
 
     public void addLocalSymbol(int id, String localSymbol) {
@@ -83,39 +87,28 @@ public class MarketDepth {
         this.depthRequestId = depthRequestId;
     }
 
-    public synchronized int processVolume(int tickerId, int volume) {
-        volumes.put(tickerId, volume);
-        long timeNow = ntpclock.getTime();
-
-        int hourOfDay = daySchedule.getHourOfDay();
-        if (hourOfDay == 18) {
-            long hoursSinceLastRestTime = (timeNow - lastResetTime) / millisInHour;
-            if (hoursSinceLastRestTime > 2) {
-                volumes.clear();
-                lastResetTime = timeNow;
-                eventReport.report("MarketDepth", "Volumes have been reset");
-            }
+    public synchronized void processVolume(int tickerId, int volume) {
+        if (mostLiquidId != 0) {
+            return;
         }
 
-        boolean isTradingPeriod = daySchedule.isTradingPeriod();
-        if (!isTradingPeriod) {
+        volumes.put(tickerId, volume);
+        if (volumes.size() >= 3) {
             int maxVolume = 0;
             int newMostLiquidId = 0;
             for (Map.Entry<Integer, Integer> entry : volumes.entrySet()) {
                 int vol = entry.getValue();
-                if (vol > maxVolume) {
+                if (vol > maxVolume && vol >= minVolume) {
                     maxVolume = vol;
                     newMostLiquidId = entry.getKey();
                 }
             }
-            if (newMostLiquidId != 0 && newMostLiquidId != mostLiquidId) {
+
+            if (newMostLiquidId != 0) {
                 mostLiquidId = newMostLiquidId;
                 localSymbol = localSymbols.get(mostLiquidId);
-                return mostLiquidId;
             }
         }
-
-        return -1;
     }
 
     public synchronized void reset() {
