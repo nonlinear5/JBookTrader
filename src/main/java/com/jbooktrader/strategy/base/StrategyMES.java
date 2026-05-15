@@ -18,6 +18,7 @@ public abstract class StrategyMES extends Strategy {
         super(optimizationParams);
         // Specify the contract to trade
         Contract contract = ContractFactory.makeFutureContract("MES", "CME");
+
         // Define trading schedule
         TradingSchedule tradingSchedule = new TradingSchedule("10:05", "15:25", "America/New_York");
 

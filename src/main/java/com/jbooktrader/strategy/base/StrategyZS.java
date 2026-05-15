@@ -17,6 +17,7 @@ public abstract class StrategyZS extends Strategy {
         super(optimizationParams);
         // Specify the contract to trade
         Contract contract = ContractFactory.makeFutureContract("ZS", "ECBOT");
+
         // Define trading schedule
         TradingSchedule tradingSchedule = new TradingSchedule("10:05", "14:00", "America/New_York");
         int multiplier = 50;// contract multiplier

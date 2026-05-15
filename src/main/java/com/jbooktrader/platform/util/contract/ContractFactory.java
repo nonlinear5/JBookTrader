@@ -9,26 +9,24 @@ import com.ib.client.Contract;
  */
 public class ContractFactory {
 
-    public static Contract makeContract(String symbol, String securityType, String exchange, String currency) {
+    public static Contract makeContract(String symbol, String localSymbol, String securityType, String exchange, String currency) {
         Contract contract = new Contract();
 
         contract.symbol(symbol);
         contract.secType(securityType);
-        contract.exchange("CME");
-        contract.currency("USD");
-        //contract.localSymbol(symbol);
-        //contract.lastTradeDateOrContractMonth("202609");
-        //contract.
-        //contract.
+        contract.exchange(exchange);
+        contract.currency(currency);
+        contract.localSymbol(localSymbol);
+
 
         return contract;
     }
 
-    public static Contract makeFutureContract(String symbol, String exchange, String currency) {
-        return makeContract(symbol, "FUT", exchange, currency);
+    public static Contract makeFutureContract(String symbol, String exchange) {
+        Contract contract = makeContract(symbol, null, "FUT", exchange, "USD");
+
+        return contract;
     }
 
-    public static Contract makeFutureContract(String symbol, String exchange) {
-        return makeFutureContract(symbol, exchange, null);
-    }
+
 }

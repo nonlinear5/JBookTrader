@@ -17,7 +17,7 @@ public abstract class Strategy6E extends Strategy {
     protected Strategy6E(StrategyParams optimizationParams) {
         super(optimizationParams);
         // Specify the contract to trade
-        Contract contract = ContractFactory.makeFutureContract("6E", "CME");
+        Contract contract = ContractFactory.makeContract("6E", null, "FUT", "CME", "USD");
         // Define trading schedule
         TradingSchedule tradingSchedule = new TradingSchedule("2:05", "15:55", "America/New_York");
         int multiplier = 125000;// contract multiplier
