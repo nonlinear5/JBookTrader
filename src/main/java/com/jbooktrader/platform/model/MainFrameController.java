@@ -56,6 +56,7 @@ public class MainFrameController {
             prefs.set(MainWindowHeight, mainViewDialog.getSize().height);
             dispatcher.exit();
             mainViewDialog.dispose();
+            System.exit(0);
         }
     }
 
