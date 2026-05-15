@@ -21,7 +21,7 @@ public class CommissionFactory {
     }
 
     public static Commission getMicroFutureCommission() {
-        return getCommission(0.25, 0.25); // MES
+        return getCommission(0.62, 0.62); // MES
     }
 
     /**
